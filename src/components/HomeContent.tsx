@@ -31,20 +31,20 @@ export function HomeContent() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            "name": "Flux Kontext AI",
+            "name": "CreativeForge",
             "description": seo.meta.description,
-            "url": "https://fluxkontext.space",
-            "applicationCategory": "ImageEditingApplication",
+            "url": "https://creativeforge.studio",
+            "applicationCategory": "CreativeApplication",
             "operatingSystem": "Web Browser",
             "offers": {
               "@type": "Offer",
               "price": "0",
               "priceCurrency": "USD",
-              "description": "Professional AI image generation and editing"
+              "description": "Professional creative content generation and editing"
             },
             "creator": {
               "@type": "Organization",
-              "name": "Flux Kontext AI"
+              "name": "CreativeForge"
             }
           })
         }}
@@ -55,10 +55,10 @@ export function HomeContent() {
         <div className="container mx-auto max-w-5xl text-center">
           <div className="hero-gradient absolute inset-0 pointer-events-none" />
           <div className="relative z-10">
-            <div className="inline-block px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm mb-6">
+            <div className="inline-block px-4 py-2 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-full text-orange-600 text-sm mb-6">
               {home.hero.badge}
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
               {home.hero.title}
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto px-4 md:px-0 leading-relaxed">
@@ -68,7 +68,7 @@ export function HomeContent() {
               <Link href="/generate">
                 <Button 
                   size="lg" 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-200 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg"
+                  className="bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-600 hover:to-red-600 hover:scale-105 active:scale-95 transition-all duration-200 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg shadow-lg"
                 >
                   <svg className="w-4 h-4 md:w-5 md:h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2L2 7V10C2 16 6 20.5 12 22C18 20.5 22 16 22 10V7L12 2Z" fill="currentColor"/>
@@ -80,7 +80,7 @@ export function HomeContent() {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="hover:scale-105 active:scale-95 transition-all duration-200 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg"
+                  className="border-orange-500/20 text-orange-600 hover:bg-orange-50 hover:scale-105 active:scale-95 transition-all duration-200 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg"
                 >
                   {common.buttons.viewPricing}
                 </Button>

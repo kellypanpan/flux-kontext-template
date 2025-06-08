@@ -56,7 +56,7 @@ export function Logo({
         <div className={cn("relative", sizeClasses[size])}>
           <Image
             src={logoSrc}
-            alt="Flux Kontext Logo"
+            alt="CreativeForge Logo"
             fill
             className="object-contain"
             priority
@@ -67,15 +67,26 @@ export function Logo({
       
       {/* 文字LOGO - 始终显示（除非明确设置为false） */}
       {showText && (
-        <span className={cn(
-          "font-bold text-primary",
-          size === "sm" && "text-lg md:text-xl",
-          size === "md" && "text-xl md:text-2xl",
-          size === "lg" && "text-2xl md:text-3xl",
-          size === "xl" && "text-3xl md:text-4xl"
-        )}>
-          Flux Kontext
-        </span>
+        <div className="flex items-center space-x-1">
+          <span className={cn(
+            "font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent",
+            size === "sm" && "text-lg md:text-xl",
+            size === "md" && "text-xl md:text-2xl",
+            size === "lg" && "text-2xl md:text-3xl",
+            size === "xl" && "text-3xl md:text-4xl"
+          )}>
+            Creative
+          </span>
+          <span className={cn(
+            "font-bold text-foreground",
+            size === "sm" && "text-lg md:text-xl",
+            size === "md" && "text-xl md:text-2xl",
+            size === "lg" && "text-2xl md:text-3xl",
+            size === "xl" && "text-3xl md:text-4xl"
+          )}>
+            Forge
+          </span>
+        </div>
       )}
     </div>
   )

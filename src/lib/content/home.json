@@ -1,114 +1,114 @@
 {
   "hero": {
-    "badge": "Professional AI Image Generation Platform",
-    "title": "Create Stunning Images with Flux Kontext AI",
-    "description": "Transform your ideas into professional images with our cutting-edge AI technology. Generate images from text, edit existing images, and process multiple images with the power of Flux Kontext AI."
+    "badge": "Professional Creative Content Platform",
+    "title": "Forge Your Creative Vision into Reality",
+    "description": "Transform your ideas into stunning visual content with our powerful AI-driven creative platform. Perfect for content creators, marketers, and businesses who need professional visuals at scale."
   },
   "features": {
-    "title": "Key Features of Flux Kontext AI Platform",
-    "description": "Our Flux Kontext AI combines cutting-edge technology to deliver professional image generation and editing in one seamless platform.",
+    "title": "Everything You Need to Create Amazing Content",
+    "description": "CreativeForge combines cutting-edge AI technology with intuitive tools to help you create, edit, and optimize visual content for any platform.",
     "items": [
       {
-        "title": "Text to Image Generation",
-        "description": "Transform your text descriptions into stunning, high-quality images with advanced AI technology."
+        "title": "AI-Powered Content Creation",
+        "description": "Generate stunning visuals from simple text descriptions. Perfect for social media, marketing campaigns, and creative projects."
       },
       {
-        "title": "Professional Image Editing",
-        "description": "Edit existing images with natural language instructions for precise modifications."
+        "title": "Smart Content Editing",
+        "description": "Edit and enhance your existing content with natural language commands. No complex software skills required."
       },
       {
-        "title": "Multi-Image Processing",
-        "description": "Process multiple images simultaneously with consistent style and quality."
+        "title": "Batch Content Processing",
+        "description": "Create multiple variations and formats simultaneously. Perfect for A/B testing and multi-platform publishing."
       },
       {
-        "title": "Advanced AI Models",
-        "description": "Powered by Flux Pro and Max models for superior image quality and detail."
+        "title": "Brand-Consistent Output",
+        "description": "Maintain consistent visual style across all your content with customizable brand templates and style guides."
       },
       {
-        "title": "Flexible Aspect Ratios",
-        "description": "Generate images in various aspect ratios from square to ultra-wide formats."
+        "title": "Multi-Format Export",
+        "description": "Generate content optimized for Instagram, TikTok, YouTube, LinkedIn, and other platforms with proper dimensions."
       },
       {
-        "title": "Professional Output",
-        "description": "Export high-resolution images in multiple formats for professional use."
+        "title": "Creative Collaboration",
+        "description": "Share projects with your team, gather feedback, and collaborate on creative campaigns in real-time."
       }
     ]
   },
   "howTo": {
-    "title": "How to Create AI Images in 4 Simple Steps",
-    "description": "Follow these easy steps to create professional AI-generated images with Flux Kontext AI platform.",
-    "alternativeTitle": "How to Create Images with AI",
-    "alternativeDescription": "Follow these simple steps to transform your ideas into professional images using our advanced AI image generation technology.",
+    "title": "Create Professional Content in 4 Easy Steps",
+    "description": "From concept to creation, our streamlined workflow helps you produce professional-quality content in minutes, not hours.",
+    "alternativeTitle": "How CreativeForge Works",
+    "alternativeDescription": "Transform your creative ideas into professional content with our simple and powerful workflow designed for creators and marketers.",
     "steps": [
       {
         "number": "1",
-        "title": "Write Your Prompt",
-        "description": "Enter your text description or creative prompt that you want to convert into a professional image."
+        "title": "Describe Your Vision",
+        "description": "Tell us what you want to create using simple, natural language. No technical jargon or complex prompts required."
       },
       {
         "number": "2",
-        "title": "Customize Settings",
-        "description": "Choose image style, aspect ratio, quality, and additional features like model type and guidance scale."
+        "title": "Choose Your Style",
+        "description": "Select from our curated style templates or customize settings for format, mood, colors, and brand elements."
       },
       {
         "number": "3",
-        "title": "Generate Image",
-        "description": "Our AI image generation system processes your prompt and creates professional images with advanced AI technology."
+        "title": "Generate & Refine",
+        "description": "Watch as CreativeForge brings your vision to life. Make instant adjustments and explore multiple variations."
       },
       {
         "number": "4",
-        "title": "Download & Edit",
-        "description": "Preview your AI-generated images, make any edits, and download your professional image creations."
+        "title": "Export & Share",
+        "description": "Download your content in the perfect format for your platform. Share directly to social media or save for later use."
       }
     ]
   },
   "faq": {
-    "title": "Flux Kontext AI - Frequently Asked Questions",
-    "description": "Find answers to common questions about our Flux Kontext AI platform and its powerful image generation features.",
+    "title": "CreativeForge - Frequently Asked Questions",
+    "description": "Everything you need to know about creating professional content with CreativeForge platform.",
     "items": [
       {
-        "question": "What is Flux Kontext AI?",
-        "answer": "Flux Kontext AI is an advanced image generation platform that uses cutting-edge artificial intelligence to create stunning images from text descriptions, edit existing images, and process multiple images simultaneously."
+        "question": "What is CreativeForge?",
+        "answer": "CreativeForge is a comprehensive creative platform that helps content creators, marketers, and businesses produce professional visual content using advanced AI technology. From social media posts to marketing materials, we make content creation fast and easy."
       },
       {
-        "question": "How does text-to-image generation work?",
-        "answer": "Our AI analyzes your text description and generates high-quality images using advanced Flux Pro and Max models. Simply describe what you want to see, and our AI creates professional-grade images in seconds."
+        "question": "Who is CreativeForge designed for?",
+        "answer": "CreativeForge is perfect for content creators, social media managers, digital marketers, small business owners, freelancers, and anyone who needs to create visual content regularly for their brand or clients."
       },
       {
-        "question": "Can I edit existing images with Flux Kontext?",
-        "answer": "Yes! Our platform supports image editing through natural language instructions. Upload an image and describe the changes you want, and our AI will apply those modifications professionally."
+        "question": "What types of content can I create?",
+        "answer": "You can create social media posts, marketing graphics, product images, blog headers, advertisements, thumbnails, logos, and any other visual content you need. Our platform supports various formats and platforms."
       },
       {
-        "question": "What image formats and sizes are supported?",
-        "answer": "Flux Kontext AI supports multiple aspect ratios including 1:1, 16:9, 9:16, 4:3, 3:2, and 21:9. You can export images in JPEG and PNG formats at high resolution for professional use."
+        "question": "Do I need design experience to use CreativeForge?",
+        "answer": "Not at all! CreativeForge is designed for everyone, regardless of design experience. Simply describe what you want in plain language, and our AI will handle the technical aspects of design and creation."
       },
       {
-        "question": "How many images can I generate at once?",
-        "answer": "You can generate up to 4 images simultaneously with our multi-image processing feature. This allows you to explore different variations of your concept efficiently."
+        "question": "Can I maintain my brand consistency?",
+        "answer": "Yes! CreativeForge allows you to create brand templates with your colors, fonts, and style preferences. This ensures all your content maintains a consistent look and feel across all platforms."
       },
       {
-        "question": "What makes Flux Kontext different from other AI image generators?",
-        "answer": "Flux Kontext stands out with its advanced Flux Pro and Max models, professional image editing capabilities, multi-image processing, and flexible aspect ratio support all in one seamless platform."
+        "question": "What platforms and formats are supported?",
+        "answer": "CreativeForge supports all major social media platforms including Instagram, TikTok, YouTube, LinkedIn, Twitter, Facebook, and more. We automatically optimize dimensions and formats for each platform."
       },
       {
-        "question": "Are there any usage limits or restrictions?",
-        "answer": "Usage depends on your plan and API limits. Our platform includes safety controls and content filtering to ensure responsible AI image generation while maintaining creative freedom."
+        "question": "How many images can I create at once?",
+        "answer": "You can generate multiple variations of your concept simultaneously, allowing you to explore different options and choose the best ones for your campaign or content strategy."
       },
       {
-        "question": "Can I use generated images commercially?",
-        "answer": "Yes, images generated through Flux Kontext AI can typically be used for commercial purposes. Please review the specific terms of service and licensing agreements for detailed usage rights."
+        "question": "Can I use CreativeForge content commercially?",
+        "answer": "Yes! All content created with CreativeForge can be used for commercial purposes, including marketing campaigns, client work, and business promotions. Check our terms of service for complete usage rights."
       }
     ]
   },
   "footer": {
     "brand": {
-      "name": "Flux Kontext",
-      "description": "Professional AI image generation platform. Create stunning images from text, edit existing images, and process multiple images with advanced AI technology.",
-      "copyright": "© 2025 Flux Kontext. All rights reserved."
+      "name": "CreativeForge",
+      "description": "Professional creative platform for content creators, marketers, and businesses. Create stunning visual content with AI-powered tools and intuitive workflows.",
+      "copyright": "© 2025 CreativeForge. All rights reserved."
     },
     "contact": {
       "title": "Contact",
-      "email": "support@fluxkontext.space"
+      "email": "support@creativeforge.studio"
     },
     "legal": {
       "title": "Legal",
@@ -125,8 +125,8 @@
     }
   },
   "twitterShowcase": {
-    "title": "AI Image Generation Showcase",
-    "description": "Discover amazing AI-generated images from leading platforms showcasing the latest in artificial intelligence technology.",
+    "title": "Creative Content Showcase",
+    "description": "Discover amazing content created by our community of creators, marketers, and businesses using CreativeForge platform.",
     "scrollHint": "Scroll to explore more"
   }
 } 

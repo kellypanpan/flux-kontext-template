@@ -20,33 +20,33 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Flux Kontext - AI Image Generation Platform | Professional AI Art Creator",
-    template: "%s | Flux Kontext"
+    default: "CreativeForge - Professional Creative Content Platform | AI-Powered Content Creation",
+    template: "%s | CreativeForge"
   },
-  description: "Professional AI image generation platform powered by Flux Kontext. Create stunning images from text descriptions with advanced AI technology. Free AI art generator.",
+  description: "Professional creative content platform for creators, marketers, and businesses. Create stunning visual content with AI-powered tools and intuitive workflows.",
   keywords: [
-    "flux kontext",
-    "ai image generator",
-    "text to image ai",
-    "ai art generator",
-    "flux ai",
-    "image generation ai",
-    "ai art creator",
-    "flux kontext ai",
-    "professional ai images",
-    "ai image creation",
-    "flux kontext pro",
-    "flux kontext max"
+    "creative content platform",
+    "ai content creation",
+    "visual content generator",
+    "content creation tools",
+    "marketing content creator",
+    "social media content",
+    "ai creative platform",
+    "content marketing tools",
+    "professional content creation",
+    "creative forge",
+    "content creator tools",
+    "marketing visuals"
   ],
-  authors: [{ name: "Flux Kontext Team" }],
-  creator: "Flux Kontext",
-  publisher: "Flux Kontext",
+  authors: [{ name: "CreativeForge Team" }],
+  creator: "CreativeForge",
+  publisher: "CreativeForge",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://fluxkontext.space'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://creativeforge.studio'),
   robots: {
     index: true,
     follow: true,

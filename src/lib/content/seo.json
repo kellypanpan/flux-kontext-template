@@ -1,57 +1,57 @@
 {
   "meta": {
-    "title": "Flux Kontext AI - Professional AI Image Generation & Editing Platform",
-    "description": "Advanced AI image generation platform powered by Flux Kontext. Create stunning images from text, edit existing images, and process multiple images with cutting-edge AI technology.",
+    "title": "CreativeForge - Professional Creative Content Platform",
+    "description": "Create stunning visual content with CreativeForge's AI-powered platform. Perfect for content creators, marketers, and businesses who need professional visuals at scale.",
     "keywords": [
-      "flux kontext ai",
-      "ai image generation",
-      "text to image ai",
-      "ai image editing",
-      "flux ai generator",
-      "professional ai images",
-      "multi-image processing",
-      "ai image creator"
+      "creative content platform",
+      "ai content creation",
+      "visual content generator",
+      "content creation tools",
+      "marketing content creator",
+      "social media content",
+      "ai creative platform",
+      "content marketing tools"
     ]
   },
   "openGraph": {
-    "title": "Flux Kontext AI - Professional AI Image Generation Platform",
-    "description": "Create stunning images with advanced AI technology. Text-to-image, image editing, and multi-image processing capabilities."
+    "title": "CreativeForge - Professional Creative Content Platform",
+    "description": "Transform your ideas into stunning visual content with our AI-driven creative platform. Perfect for creators, marketers, and businesses."
   },
   "twitter": {
-    "title": "Flux Kontext AI - Professional AI Image Generation Platform",
-    "description": "Create stunning images with advanced AI technology. Text-to-image, image editing, and multi-image processing capabilities."
+    "title": "CreativeForge - Professional Creative Content Platform",
+    "description": "Transform your ideas into stunning visual content with our AI-driven creative platform. Perfect for creators, marketers, and businesses."
   },
   "structuredData": {
     "organization": {
-      "name": "Flux Kontext",
-      "description": "Professional AI image generation platform powered by Flux Kontext. Create stunning images from text descriptions with advanced AI technology.",
+      "name": "CreativeForge",
+      "description": "Professional creative content platform helping creators, marketers, and businesses produce stunning visual content with AI-powered tools.",
       "contactType": "customer service",
       "availableLanguage": ["English"],
       "addressCountry": "US"
     },
     "software": {
-      "name": "Flux Kontext AI Image Generator",
-      "description": "Professional AI image generation platform. Create stunning images from text descriptions with advanced Flux Kontext AI technology.",
-      "applicationCategory": "ImageEditingApplication",
+      "name": "CreativeForge Creative Platform",
+      "description": "Professional creative content platform for content creators, marketers, and businesses. Create stunning visuals with AI-powered tools.",
+      "applicationCategory": "CreativeApplication",
       "operatingSystem": "Web Browser",
-      "freeDescription": "Free AI image generation with Flux Kontext",
+      "freeDescription": "Free creative content generation with CreativeForge",
       "features": [
-        "Text to image AI generation",
-        "Image editing with AI",
-        "Multiple image processing",
-        "Professional image output",
-        "Flux Kontext Pro and Max models",
-        "AI-powered image creation"
+        "AI-powered content creation",
+        "Smart content editing",
+        "Batch content processing",
+        "Brand-consistent output",
+        "Multi-format export",
+        "Creative collaboration tools"
       ]
     },
     "service": {
-      "name": "Flux Kontext AI Image Generation Service",
-      "description": "Professional AI image generation service with multiple pricing plans powered by Flux Kontext technology",
+      "name": "CreativeForge Creative Content Service",
+      "description": "Professional creative content generation service with multiple pricing plans for creators and businesses",
       "plans": {
-        "free": "Free AI image generation with basic features",
-        "plus": "Enhanced AI image generation with Flux Kontext Pro",
-        "pro": "Premium AI image generation with Flux Kontext Max",
-        "enterprise": "Enterprise-grade AI image generation with priority support"
+        "free": "Free creative content generation with basic features",
+        "plus": "Enhanced content creation with premium templates",
+        "pro": "Professional content creation with advanced features",
+        "enterprise": "Enterprise-grade content creation with team collaboration"
       }
     }
   }

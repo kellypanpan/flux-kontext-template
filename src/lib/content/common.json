@@ -1,6 +1,6 @@
 {
   "buttons": {
-    "startCreating": "Start Creating Images Now",
+    "startCreating": "Start Creating Content Now",
     "viewPricing": "View Pricing Plans",
     "signIn": "Sign In",
     "signUp": "Sign Up",
@@ -17,25 +17,25 @@
     "subscribe": "Subscribe",
     "purchase": "Purchase",
     "getStartedFree": "Get Started Free",
-    "startCreatingAI": "Start Creating AI Images",
+    "startCreatingContent": "Start Creating Content",
     "continueWithGoogle": "Continue with Google",
     "continueWithGitHub": "Continue with GitHub",
     "goHome": "Go Home",
-    "tryGenerate": "Try Generate",
+    "tryCreate": "Try Create",
     "signOut": "Sign Out",
-    "generate": "Generate",
+    "generate": "Create",
     "retry": "Retry",
     "copyLink": "Copy Link",
-    "downloadPic": "Download Pic",
-    "aiEnhance": "✨ AI Enhance",
+    "downloadContent": "Download Content",
+    "enhanceContent": "✨ Enhance Content",
     "uploadImages": "Upload Images",
     "removeImage": "Remove Image",
-    "editThisImage": "Edit This Image",
+    "editThisContent": "Edit This Content",
     "mostPopular": "MOST POPULAR"
   },
   "navigation": {
     "home": "Home",
-    "generate": "Generate",
+    "generate": "Create",
     "pricing": "Pricing",
     "resources": "Resources",
     "dashboard": "Dashboard",
@@ -69,7 +69,7 @@
     "processing": "Processing",
     "completed": "Completed",
     "failed": "Failed",
-    "generating": "Generating...",
+    "creating": "Creating...",
     "uploading": "Uploading...",
     "verifying": "Verifying..."
   },
@@ -87,11 +87,11 @@
     "copyFailed": "Failed to copy",
     "uploadSuccess": "Upload successful",
     "uploadFailed": "Upload failed",
-    "generationSuccess": "Generation completed successfully",
-    "generationFailed": "Sign in to start creating! Get 100 free credits instantly.",
+    "creationSuccess": "Content created successfully",
+    "creationFailed": "Sign in to start creating! Get 100 free credits instantly.",
     "verificationRequired": "Please complete verification",
     "verificationExpired": "Verification expired, please try again",
     "upgradeRequired": "Current user type supports up to ",
-    "upgradeAccount": " images, please upgrade your account"
+    "upgradeAccount": " content pieces, please upgrade your account"
   }
 } 
