@@ -15,7 +15,7 @@ import { home, common, seo } from "@/lib/content"
 export function HomeContent() {
   return (
     <div className="min-h-screen">
-      {/* Navigation */}
+      {/* Modern Navigation */}
       <Navigation />
 
       {/* 结构化数据 - Structured Data */}
@@ -50,28 +50,41 @@ export function HomeContent() {
         }}
       />
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4">
-        <div className="container mx-auto max-w-5xl text-center">
-          <div className="hero-gradient absolute inset-0 pointer-events-none" />
-          <div className="relative z-10">
-            <div className="inline-block px-4 py-2 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-full text-orange-600 text-sm mb-6">
+      {/* Hero Section - 现代化设计 */}
+      <section className="relative pt-32 pb-24 px-4 overflow-hidden">
+        <div className="hero-gradient absolute inset-0 pointer-events-none" />
+        
+        {/* 装饰性元素 */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full blur-3xl float-animation" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-red-500/20 to-orange-500/20 rounded-full blur-3xl float-animation" style={{animationDelay: '2s'}} />
+        
+        <div className="container mx-auto max-w-6xl text-center relative z-10">
+          <div className="space-y-8">
+            {/* Badge */}
+            <div className="inline-flex items-center px-6 py-3 rounded-full glass-effect border border-orange-500/30 text-orange-400 text-sm font-medium glow-effect">
+              <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 pulse-glow"></span>
               {home.hero.badge}
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-              {home.hero.title}
+            
+            {/* Main Title */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-tight">
+              <span className="gradient-text">{home.hero.title}</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto px-4 md:px-0 leading-relaxed">
+            
+            {/* Subtitle */}
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto px-4 md:px-0 leading-relaxed font-light">
               {home.hero.description}
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
               <Link href="/generate">
                 <Button 
                   size="lg" 
-                  className="bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-600 hover:to-red-600 hover:scale-105 active:scale-95 transition-all duration-200 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg shadow-lg"
+                  className="modern-button text-white font-semibold px-8 md:px-12 py-4 md:py-6 text-base md:text-lg rounded-2xl glow-effect"
                 >
-                  <svg className="w-4 h-4 md:w-5 md:h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7V10C2 16 6 20.5 12 22C18 20.5 22 16 22 10V7L12 2Z" fill="currentColor"/>
+                  <svg className="w-5 h-5 md:w-6 md:h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                   </svg>
                   {common.buttons.startCreating}
                 </Button>
@@ -80,32 +93,56 @@ export function HomeContent() {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="border-orange-500/20 text-orange-600 hover:bg-orange-50 hover:scale-105 active:scale-95 transition-all duration-200 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg"
+                  className="glass-effect border-orange-500/30 text-orange-400 hover:bg-orange-500/10 hover:border-orange-400/50 hover:text-orange-300 px-8 md:px-12 py-4 md:py-6 text-base md:text-lg rounded-2xl transition-all duration-300"
                 >
+                  <svg className="w-5 h-5 md:w-6 md:h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                  </svg>
                   {common.buttons.viewPricing}
                 </Button>
               </Link>
+            </div>
+
+            {/* 社会证明 */}
+            <div className="flex items-center justify-center space-x-8 pt-12 opacity-60">
+              <div className="text-sm text-gray-400">
+                <span className="text-orange-400 font-semibold text-lg">10,000+</span><br />
+                Happy Creators
+              </div>
+              <div className="w-px h-8 bg-gray-600"></div>
+              <div className="text-sm text-gray-400">
+                <span className="text-orange-400 font-semibold text-lg">1M+</span><br />
+                Content Created
+              </div>
+              <div className="w-px h-8 bg-gray-600"></div>
+              <div className="text-sm text-gray-400">
+                <span className="text-orange-400 font-semibold text-lg">99.9%</span><br />
+                Uptime
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Twitter展示区域 */}
-      <TwitterShowcase />
+      {/* Content Sections with modern styling */}
+      <div className="space-y-24">
+        {/* Twitter展示区域 */}
+        <TwitterShowcase />
 
-      {/* Key Features Section */}
-      <KeyFeatures />
+        {/* Key Features Section */}
+        <KeyFeatures />
 
-      {/* How-to Steps Section */}
-      <HowToSteps />
+        {/* How-to Steps Section */}
+        <HowToSteps />
 
-      {/* FAQ Section */}
-      <FAQ />
+        {/* FAQ Section */}
+        <FAQ />
+      </div>
 
       {/* Footer */}
       <Footer />
 
-      {/* 推特脚本 - 确保推特内容正常加载 */}
+      {/* Scripts */}
       <Script 
         src="https://platform.twitter.com/widgets.js" 
         strategy="lazyOnload"

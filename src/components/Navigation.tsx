@@ -51,8 +51,8 @@ export function Navigation() {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border">
-      <div className="container mx-auto px-4 h-16 flex items-center">
+    <header className="fixed top-0 left-0 right-0 z-50 modern-nav">
+      <div className="container mx-auto px-4 h-20 flex items-center">
         {/* 左侧：Logo */}
         <div className="flex-shrink-0">
           <LogoVariants.Navigation />
@@ -67,31 +67,31 @@ export function Navigation() {
                 <div className="relative resources-dropdown">
                   <button
                     onClick={() => setIsResourcesMenuOpen(!isResourcesMenuOpen)}
-                    className={`flex items-center space-x-1 relative transition-all duration-200 hover:font-semibold active:scale-95 ${
+                    className={`flex items-center space-x-2 relative px-4 py-2 rounded-lg transition-all duration-300 hover:bg-orange-500/10 ${
                       pathname.startsWith('/resources') 
-                        ? 'text-primary font-semibold' 
-                        : 'text-foreground hover:text-primary'
+                        ? 'text-orange-400 bg-orange-500/10' 
+                        : 'text-gray-300 hover:text-orange-400'
                     }`}
                   >
-                    <span>{link.label}</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isResourcesMenuOpen ? 'rotate-180' : ''}`} />
+                    <span className="font-medium">{link.label}</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isResourcesMenuOpen ? 'rotate-180' : ''}`} />
                     {pathname.startsWith('/resources') && (
-                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                      <div className="absolute -bottom-2 left-4 right-4 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
                     )}
                   </button>
                   
                   {/* Resources下拉菜单内容 */}
                   {isResourcesMenuOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-56 bg-background border border-border rounded-lg shadow-lg py-2 z-[9999]">
+                    <div className="absolute top-full left-0 mt-3 w-64 modern-card rounded-xl py-3 z-[9999]">
                       {link.subItems?.map((subItem) => (
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="flex items-center space-x-3 px-4 py-2 text-sm transition-colors hover:bg-accent"
+                          className="flex items-center space-x-3 px-4 py-3 text-sm transition-all duration-200 hover:bg-orange-500/10 text-gray-300 hover:text-orange-400"
                           onClick={() => setIsResourcesMenuOpen(false)}
                         >
-                          <subItem.icon className="w-4 h-4 text-primary" />
-                          <span>{subItem.label}</span>
+                          <subItem.icon className="w-5 h-5 text-orange-400" />
+                          <span className="font-medium">{subItem.label}</span>
                         </Link>
                       ))}
                     </div>
@@ -101,15 +101,15 @@ export function Navigation() {
                 // 普通导航链接
                 <Link 
                   href={link.href} 
-                  className={`relative transition-all duration-200 hover:font-semibold active:scale-95 ${
+                  className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-orange-500/10 ${
                     pathname === link.href 
-                      ? 'text-primary font-semibold' 
-                      : 'text-foreground hover:text-primary'
+                      ? 'text-orange-400 bg-orange-500/10' 
+                      : 'text-gray-300 hover:text-orange-400'
                   }`}
                 >
                   {link.label}
                   {pathname === link.href && (
-                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                    <div className="absolute -bottom-2 left-4 right-4 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full" />
                   )}
                 </Link>
               )}
@@ -120,58 +120,59 @@ export function Navigation() {
         {/* 右侧：桌面端用户状态和按钮 */}
         <div className="hidden md:flex items-center space-x-4 flex-shrink-0">
           {status === "loading" ? (
-            <div className="w-8 h-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+            <div className="w-8 h-8 animate-spin rounded-full border-2 border-orange-500 border-t-transparent" />
           ) : session ? (
             // 已登录状态
             <div className="relative user-dropdown">
               <button
                 onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                className="flex items-center space-x-2 p-2 rounded-lg hover:bg-accent transition-colors"
+                className="flex items-center space-x-3 p-3 rounded-xl modern-card hover:bg-orange-500/10 transition-all duration-300"
               >
                 {session.user?.image ? (
                   <img 
                     src={session.user.image} 
                     alt={session.user.name || "User"} 
-                    className="w-8 h-8 rounded-full"
+                    className="w-8 h-8 rounded-full border-2 border-orange-500/30"
                   />
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                    <User className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center">
+                    <User className="w-4 h-4 text-white" />
                   </div>
                 )}
-                <span className="text-sm font-medium">{session.user?.name || session.user?.email}</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isUserMenuOpen ? 'rotate-180' : ''}`} />
+                <span className="text-sm font-medium text-gray-300">{session.user?.name || session.user?.email}</span>
+                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform duration-300 ${isUserMenuOpen ? 'rotate-180' : ''}`} />
               </button>
               
               {/* 用户下拉菜单 */}
               {isUserMenuOpen && (
-                <div className="absolute top-full right-0 mt-2 w-48 bg-background border border-border rounded-lg shadow-lg py-2 z-[9999]">
+                <div className="absolute top-full right-0 mt-3 w-52 modern-card rounded-xl py-3 z-[9999]">
                   <Link
                     href="/dashboard"
-                    className="block px-4 py-2 text-sm transition-colors hover:bg-accent"
+                    className="flex items-center space-x-3 px-4 py-3 text-sm transition-all duration-200 hover:bg-orange-500/10 text-gray-300 hover:text-orange-400"
                     onClick={() => setIsUserMenuOpen(false)}
                   >
-                    {common.navigation.dashboard}
+                    <User className="w-4 h-4" />
+                    <span className="font-medium">{common.navigation.dashboard}</span>
                   </Link>
-                  <hr className="my-2 border-border" />
+                  <hr className="my-2 border-gray-700/50" />
                   <button
                     onClick={handleSignOut}
-                    className="w-full text-left px-4 py-2 text-sm transition-colors hover:bg-accent flex items-center space-x-2"
+                    className="w-full flex items-center space-x-3 px-4 py-3 text-sm transition-all duration-200 hover:bg-red-500/10 text-gray-300 hover:text-red-400"
                   >
                     <LogOut className="w-4 h-4" />
-                    <span>{common.buttons.signOut}</span>
+                    <span className="font-medium">{common.buttons.signOut}</span>
                   </button>
                 </div>
               )}
             </div>
           ) : (
             // 未登录状态
-            <>
+            <div className="flex items-center space-x-3">
               <Link href="/auth/signin">
                 <Button 
                   variant="ghost" 
                   size="sm" 
-                  className="hover:font-semibold active:scale-95 transition-all duration-200"
+                  className="text-gray-300 hover:text-orange-400 hover:bg-orange-500/10 font-medium px-6 py-2 rounded-lg transition-all duration-300"
                 >
                   {common.navigation.login}
                 </Button>
@@ -179,26 +180,26 @@ export function Navigation() {
               <Link href="/auth/signup">
                 <Button 
                   size="sm" 
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-200"
+                  className="modern-button font-medium px-6 py-2 text-sm rounded-lg"
                 >
                   {common.buttons.signUp}
                 </Button>
               </Link>
-            </>
+            </div>
           )}
         </div>
 
         {/* 移动端汉堡菜单按钮 */}
         <div className="md:hidden flex-shrink-0">
           <button
-            className="p-2 hover:bg-accent rounded-md active:scale-95 transition-all duration-200"
+            className="p-3 hover:bg-orange-500/10 rounded-lg transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
             <div className="w-6 h-6 flex flex-col justify-center items-center">
-              <span className={`block w-5 h-0.5 bg-foreground transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-foreground transition-all duration-300 mt-1 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-5 h-0.5 bg-foreground transition-all duration-300 mt-1 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`} />
+              <span className={`block w-5 h-0.5 bg-gray-300 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`} />
+              <span className={`block w-5 h-0.5 bg-gray-300 transition-all duration-300 mt-1 ${isMobileMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block w-5 h-0.5 bg-gray-300 transition-all duration-300 mt-1 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`} />
             </div>
           </button>
         </div>
@@ -206,132 +207,50 @@ export function Navigation() {
 
       {/* 移动端菜单 */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-sm border-b border-border">
-          <div className="container mx-auto px-4 py-4 space-y-4">
-            {/* 移动端导航链接 */}
+        <div className="md:hidden modern-card mx-4 mb-4 rounded-xl overflow-hidden">
+          <nav className="py-4 space-y-2">
             {navLinks.map((link) => (
               <div key={link.href}>
-                {link.hasDropdown ? (
-                  // 移动端Resources下拉菜单
-                  <div>
-                    <button
-                      onClick={() => setIsResourcesMenuOpen(!isResourcesMenuOpen)}
-                      className={`flex items-center justify-between w-full py-2 px-3 rounded-md transition-all duration-200 hover:bg-accent hover:font-semibold active:scale-95 ${
-                        pathname.startsWith('/resources') 
-                          ? 'text-primary font-semibold bg-accent' 
-                          : 'text-foreground'
-                      }`}
-                    >
-                      <span>{link.label}</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isResourcesMenuOpen ? 'rotate-180' : ''}`} />
-                    </button>
-                    
-                    {/* 移动端Resources子菜单 */}
-                    {isResourcesMenuOpen && (
-                      <div className="ml-4 mt-2 space-y-1">
-                        {link.subItems?.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            href={subItem.href}
-                            className="flex items-center space-x-3 py-2 px-3 rounded-md text-sm transition-colors hover:bg-accent"
-                            onClick={() => {
-                              setIsResourcesMenuOpen(false)
-                              setIsMobileMenuOpen(false)
-                            }}
-                          >
-                            <subItem.icon className="w-4 h-4 text-primary" />
-                            <span>{subItem.label}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  // 普通移动端导航链接
+                <Link
+                  href={link.href}
+                  className={`block px-6 py-3 text-base font-medium transition-all duration-200 ${
+                    pathname === link.href || pathname.startsWith(link.href)
+                      ? 'text-orange-400 bg-orange-500/10'
+                      : 'text-gray-300 hover:text-orange-400 hover:bg-orange-500/10'
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+                {link.hasDropdown && link.subItems?.map((subItem) => (
                   <Link
-                    href={link.href}
-                    className={`block py-2 px-3 rounded-md transition-all duration-200 hover:bg-accent hover:font-semibold active:scale-95 ${
-                      pathname === link.href 
-                        ? 'text-primary font-semibold bg-accent' 
-                        : 'text-foreground'
-                    }`}
+                    key={subItem.href}
+                    href={subItem.href}
+                    className="block px-10 py-2 text-sm text-gray-400 hover:text-orange-400 hover:bg-orange-500/10 transition-all duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
-                    {link.label}
+                    {subItem.label}
                   </Link>
-                )}
+                ))}
               </div>
             ))}
             
-            {/* 移动端用户状态和按钮 */}
-            <div className="flex flex-col space-y-2 pt-4 border-t border-border">
-              {status === "loading" ? (
-                <div className="flex justify-center">
-                  <div className="w-6 h-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                </div>
-              ) : session ? (
-                // 移动端已登录状态
-                <>
-                  <div className="flex items-center space-x-3 p-3 bg-accent rounded-lg">
-                    {session.user?.image ? (
-                      <img 
-                        src={session.user.image} 
-                        alt={session.user.name || "User"} 
-                        className="w-10 h-10 rounded-full"
-                      />
-                    ) : (
-                      <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <User className="w-5 h-5 text-primary" />
-                      </div>
-                    )}
-                    <div>
-                      <p className="font-medium">{session.user?.name}</p>
-                      <p className="text-sm text-muted-foreground">{session.user?.email}</p>
-                    </div>
-                  </div>
-                  <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="w-full justify-start hover:font-semibold active:scale-95 transition-all duration-200"
-                    >
-                      {common.navigation.dashboard}
-                    </Button>
-                  </Link>
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    onClick={handleSignOut}
-                    className="w-full justify-start hover:font-semibold active:scale-95 transition-all duration-200 text-red-600 hover:text-red-700"
-                  >
-                    <LogOut className="w-4 h-4 mr-2" />
-                    {common.buttons.signOut}
+            {/* 移动端用户操作 */}
+            {!session && (
+              <div className="pt-4 border-t border-gray-700/50 space-y-2 px-6">
+                <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button variant="ghost" className="w-full justify-start text-gray-300 hover:text-orange-400 hover:bg-orange-500/10">
+                    {common.navigation.login}
                   </Button>
-                </>
-              ) : (
-                // 移动端未登录状态
-                <>
-                  <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="w-full justify-start hover:font-semibold active:scale-95 transition-all duration-200"
-                    >
-                      {common.navigation.login}
-                    </Button>
-                  </Link>
-                  <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)}>
-                    <Button 
-                      size="sm" 
-                      className="w-full justify-start bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95 transition-all duration-200"
-                    >
-                      {common.buttons.signUp}
-                    </Button>
-                  </Link>
-                </>
-              )}
-            </div>
-          </div>
+                </Link>
+                <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)}>
+                  <Button className="w-full modern-button">
+                    {common.buttons.signUp}
+                  </Button>
+                </Link>
+              </div>
+            )}
+          </nav>
         </div>
       )}
     </header>
