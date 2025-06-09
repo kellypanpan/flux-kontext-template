@@ -55,13 +55,13 @@ export function HomeContent() {
         <div className="hero-gradient absolute inset-0 pointer-events-none" />
         
         {/* 装饰性元素 */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/20 to-blue-600/20 rounded-full blur-3xl float-animation" />
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue-600/20 to-blue-500/20 rounded-full blur-3xl float-animation" style={{animationDelay: '2s'}} />
+        <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-blue-600/8 rounded-full blur-3xl float-animation" />
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-blue-600/8 to-blue-500/10 rounded-full blur-3xl float-animation" style={{animationDelay: '2s'}} />
         
         <div className="container mx-auto max-w-6xl text-center relative z-10">
           <div className="space-y-8">
             {/* Badge */}
-            <div className="inline-flex items-center px-6 py-3 rounded-full glass-effect border border-blue-500/30 text-blue-400 text-sm font-medium glow-effect">
+            <div className="inline-flex items-center px-6 py-3 rounded-full glass-effect border border-blue-500/20 text-blue-600 text-sm font-medium glow-effect">
               <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 pulse-glow"></span>
               {home.hero.badge}
             </div>
@@ -72,7 +72,7 @@ export function HomeContent() {
             </h1>
             
             {/* Subtitle */}
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto px-4 md:px-0 leading-relaxed font-light">
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-12 max-w-4xl mx-auto px-4 md:px-0 leading-relaxed font-light">
               {home.hero.description}
             </p>
             
@@ -93,7 +93,7 @@ export function HomeContent() {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="glass-effect border-blue-500/30 text-blue-400 hover:bg-blue-500/10 hover:border-blue-400/50 hover:text-blue-300 px-8 md:px-12 py-4 md:py-6 text-base md:text-lg rounded-2xl transition-all duration-300"
+                  className="glass-effect border-blue-500/20 text-blue-600 hover:bg-blue-500/5 hover:border-blue-400/30 hover:text-blue-700 px-8 md:px-12 py-4 md:py-6 text-base md:text-lg rounded-2xl transition-all duration-300"
                 >
                   <svg className="w-5 h-5 md:w-6 md:h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
@@ -104,19 +104,19 @@ export function HomeContent() {
             </div>
 
             {/* 社会证明 */}
-            <div className="flex items-center justify-center space-x-8 pt-12 opacity-60">
-              <div className="text-sm text-gray-400">
-                <span className="text-blue-400 font-semibold text-lg">10,000+</span><br />
+            <div className="flex items-center justify-center space-x-8 pt-12 opacity-80">
+              <div className="text-sm text-gray-600">
+                <span className="text-blue-600 font-semibold text-lg">10,000+</span><br />
                 Happy Creators
               </div>
-              <div className="w-px h-8 bg-gray-600"></div>
-              <div className="text-sm text-gray-400">
-                <span className="text-blue-400 font-semibold text-lg">1M+</span><br />
+              <div className="w-px h-8 bg-gray-300"></div>
+              <div className="text-sm text-gray-600">
+                <span className="text-blue-600 font-semibold text-lg">1M+</span><br />
                 Content Created
               </div>
-              <div className="w-px h-8 bg-gray-600"></div>
-              <div className="text-sm text-gray-400">
-                <span className="text-blue-400 font-semibold text-lg">99.9%</span><br />
+              <div className="w-px h-8 bg-gray-300"></div>
+              <div className="text-sm text-gray-600">
+                <span className="text-blue-600 font-semibold text-lg">99.9%</span><br />
                 Uptime
               </div>
             </div>
