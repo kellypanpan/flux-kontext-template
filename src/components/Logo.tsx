@@ -69,7 +69,7 @@ export function Logo({
       {showText && (
         <div className="flex items-center space-x-1">
           <span className={cn(
-            "font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent",
+            "font-bold bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent",
             size === "sm" && "text-lg md:text-xl",
             size === "md" && "text-xl md:text-2xl",
             size === "lg" && "text-2xl md:text-3xl",

@@ -10,19 +10,19 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 4%;
     --popover-foreground: 0 0% 98%;
-    --primary: 24 74% 58%; /* 现代橙色 */
+    --primary: 217 91% 60%; /* 现代蓝色 #3b82f6 */
     --primary-foreground: 0 0% 100%;
     --secondary: 240 5% 15%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 5% 10%;
     --muted-foreground: 240 5% 65%;
-    --accent: 0 72% 60%; /* 现代红色 */
+    --accent: 213 93% 68%; /* 浅蓝色 #60a5fa */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 6% 20%;
     --input: 240 6% 20%;
-    --ring: 24 74% 58%;
+    --ring: 217 91% 60%;
     --radius: 0.75rem;
   }
 }
@@ -35,8 +35,8 @@
   body {
     @apply bg-background text-foreground font-sans;
     background: 
-      radial-gradient(circle at 25% 0%, rgb(255, 69, 0, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 75% 100%, rgb(255, 140, 0, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 25% 0%, rgb(59, 130, 246, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 75% 100%, rgb(96, 165, 250, 0.06) 0%, transparent 50%),
       linear-gradient(180deg, rgb(2, 6, 23) 0%, rgb(0, 0, 0) 100%);
     min-height: 100vh;
     background-attachment: fixed;
@@ -44,7 +44,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-bold tracking-tight;
-    background: linear-gradient(135deg, #ff4500 0%, #ff8c00  100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -52,14 +52,14 @@
 
   /* 现代化渐变文字效果 */
   .gradient-text {
-    background: linear-gradient(135deg, #ff4500 0%, #ff6b35 25%, #ff8c00 50%, #ffab00 75%, #ff4500 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 25%, #93c5fd 50%, #dbeafe 75%, #3b82f6 100%);
     background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     animation: gradient-flow 8s ease-in-out infinite;
     font-weight: 700;
-    filter: drop-shadow(0 0 20px rgba(255, 69, 0, 0.3));
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.3));
   }
 
   @keyframes gradient-flow {
@@ -72,18 +72,18 @@
   /* 高级英雄区域渐变 */
   .hero-gradient {
     background: 
-      radial-gradient(ellipse 800px 600px at center, rgba(255, 69, 0, 0.15) 0%, transparent 40%),
-      radial-gradient(ellipse 400px 300px at 80% 20%, rgba(255, 140, 0, 0.1) 0%, transparent 50%),
-      radial-gradient(ellipse 600px 400px at 20% 80%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
+      radial-gradient(ellipse 800px 600px at center, rgba(59, 130, 246, 0.12) 0%, transparent 40%),
+      radial-gradient(ellipse 400px 300px at 80% 20%, rgba(96, 165, 250, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 600px 400px at 20% 80%, rgba(147, 197, 253, 0.06) 0%, transparent 50%);
   }
 
   /* 现代化按钮样式 */
   .modern-button {
     @apply relative overflow-hidden;
-    background: linear-gradient(135deg, #ff4500 0%, #ff6b35 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
     box-shadow: 
-      0 4px 15px 0 rgba(255, 69, 0, 0.3),
-      0 8px 25px 0 rgba(255, 69, 0, 0.2),
+      0 4px 15px 0 rgba(59, 130, 246, 0.3),
+      0 8px 25px 0 rgba(59, 130, 246, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
@@ -93,8 +93,8 @@
   .modern-button:hover {
     transform: translateY(-2px);
     box-shadow: 
-      0 8px 25px 0 rgba(255, 69, 0, 0.4),
-      0 15px 40px 0 rgba(255, 69, 0, 0.3),
+      0 8px 25px 0 rgba(59, 130, 246, 0.4),
+      0 15px 40px 0 rgba(59, 130, 246, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
@@ -115,10 +115,10 @@
   }
 
   .modern-card:hover {
-    border-color: rgba(255, 69, 0, 0.3);
+    border-color: rgba(59, 130, 246, 0.3);
     box-shadow: 
       0 12px 40px 0 rgba(0, 0, 0, 0.4),
-      0 0 20px 0 rgba(255, 69, 0, 0.1),
+      0 0 20px 0 rgba(59, 130, 246, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
     transform: translateY(-4px);
   }
@@ -135,7 +135,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 69, 0, 0.1), rgba(255, 140, 0, 0.1));
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1));
     filter: blur(20px);
     z-index: -1;
     opacity: 0;
@@ -170,7 +170,7 @@
     bottom: 0;
     border-radius: 12px;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(255, 69, 0, 0.5), rgba(255, 140, 0, 0.5), rgba(255, 69, 0, 0.5));
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.5), rgba(96, 165, 250, 0.5), rgba(59, 130, 246, 0.5));
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask-composite: subtract;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -194,10 +194,10 @@
 
   @keyframes pulse-glow {
     0%, 100% { 
-      box-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
     }
     50% { 
-      box-shadow: 0 0 40px rgba(255, 69, 0, 0.6);
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
     }
   }
 
@@ -211,18 +211,18 @@
 
   .modern-input:focus {
     background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 69, 0, 0.5);
-    box-shadow: 0 0 20px rgba(255, 69, 0, 0.2);
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
   }
 
   /* 特效文字 */
   .neon-text {
-    color: #ff4500;
+    color: #3b82f6;
     text-shadow: 
-      0 0 5px #ff4500,
-      0 0 10px #ff4500,
-      0 0 15px #ff4500,
-      0 0 20px #ff4500;
+      0 0 5px #3b82f6,
+      0 0 10px #3b82f6,
+      0 0 15px #3b82f6,
+      0 0 20px #3b82f6;
     animation: neon-flicker 2s infinite alternate;
   }
 
@@ -251,19 +251,19 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(135deg, #ff4500, #ff8c00);
+    background: linear-gradient(135deg, #3b82f6, #60a5fa);
     border-radius: 4px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(135deg, #ff6b35, #ffab00);
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
   }
 
   /* 移动端优化 */
   @media (max-width: 768px) {
     .hero-gradient {
       background: 
-        radial-gradient(ellipse 400px 300px at center, rgba(255, 69, 0, 0.1) 0%, transparent 40%);
+        radial-gradient(ellipse 400px 300px at center, rgba(59, 130, 246, 0.08) 0%, transparent 40%);
     }
     
     .modern-card:hover {
@@ -294,7 +294,7 @@
   }
 
   .border-glow {
-    box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
   }
 }
 /* Force CSS refresh - 05/28/2025 18:43:11 */
