@@ -1859,31 +1859,31 @@ export function FluxKontextGenerator() {
           {/* 🔧 生成图像和编辑图像 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
             {/* 🔧 生成图像 */}
-            <Card className="p-3">
-              <div className="space-y-3">
+            <Card className="p-6">
+              <div className="space-y-6">
                 {/* 🔧 生成图像标题 */}
-                <div className="text-center mb-6">
-                  <h1 className="text-3xl sm:text-4xl font-bold text-yellow-400 mb-2">
+                <div className="text-center mb-8">
+                  <h1 className="text-4xl sm:text-5xl font-bold text-yellow-400 mb-4">
                     Flux Kontext AI Generator
                   </h1>
-                  <p className="text-lg text-yellow-300/90 mb-4 leading-relaxed">
+                  <p className="text-xl text-yellow-300/90 mb-6 leading-relaxed">
                     Create and edit professional images with advanced AI technology
                   </p>
-                  <div className="flex flex-wrap justify-center gap-2">
-                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-sm px-3 py-1">Character Consistency</Badge>
-                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-sm px-3 py-1">Style Transfer</Badge>
-                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-sm px-3 py-1">Multi-Image Support</Badge>
+                  <div className="flex flex-wrap justify-center gap-3">
+                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-base px-4 py-2">Character Consistency</Badge>
+                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-base px-4 py-2">Style Transfer</Badge>
+                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-base px-4 py-2">Multi-Image Support</Badge>
                   </div>
                 </div>
 
                 {/* 🔧 模型选择 */}
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <Label className="text-sm font-medium text-yellow-400">
+                  <div className="flex items-center justify-between mb-3">
+                    <Label className="text-lg font-semibold text-yellow-400">
                       {uploadedImages.length > 0 ? "Image Editing Model" : "Text to Image Model"}
                     </Label>
                     {currentModelInfo?.recommended && (
-                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-xs">
+                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-sm">
                         Recommended
                       </Badge>
                     )}
@@ -1893,14 +1893,14 @@ export function FluxKontextGenerator() {
                     value={selectedModel}
                     onChange={(e) => {
                       const newModel = e.target.value
-                      // 🔧 设置模型
                       if (newModel === 'max-multi') {
                         setSelectedModel('max' as any)
                       } else {
                         setSelectedModel(newModel as any)
                       }
                     }}
-                    className="w-full p-2 border border-border rounded text-sm bg-background text-purple-300"
+                    className="w-full p-4 border border-border rounded-lg text-lg bg-background text-white h-14"
+                    style={{ fontSize: '18px' }}
                   >
                     {getAvailableModelsForContext().map((model) => (
                       <option 
@@ -1915,18 +1915,394 @@ export function FluxKontextGenerator() {
                     ))}
                   </select>
                 
-                  {/* 🔧 其他UI组件暂时省略 */}
+                  {/* 🔧 模型信息 */}
+                  {currentModelInfo && (
+                    <div className="mt-4 p-4 bg-muted/20 border border-border rounded-lg">
+                      <div className="grid grid-cols-2 gap-3 text-base">
+                        <div>
+                          <span className="text-yellow-400 font-semibold">Credits:</span>
+                          <span className="ml-2 text-white">{currentModelInfo.credits}</span>
+                        </div>
+                        <div>
+                          <span className="text-yellow-400 font-semibold">Speed:</span>
+                          <span className="ml-2 text-white">{currentModelInfo.speed}</span>
+                        </div>
+                        <div>
+                          <span className="text-yellow-400 font-semibold">Quality:</span>
+                          <span className="ml-2 text-white">{currentModelInfo.quality}</span>
+                        </div>
+                        <div>
+                          <span className="text-yellow-400 font-semibold">Type:</span>
+                          <span className="ml-2 text-white">
+                            {uploadedImages.length > 0 ? "Editing" : "Generation"}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-3">
+                        <p className="text-base text-yellow-300/80 mb-2">
+                          {currentModelInfo.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {currentModelInfo.features.map((feature, index) => (
+                            <Badge 
+                              key={index} 
+                              variant="outline" 
+                              className="bg-primary/5 text-primary border-primary/20 text-sm px-2 py-1"
+                            >
+                              {feature}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 🔧 高级设置 */}
+                  <div className="mt-6">
+                    <h3 className="text-lg font-semibold text-yellow-400 flex items-center gap-2 mb-4">
+                      <Settings className="h-5 w-5" />
+                      Advanced Settings
+                    </h3>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      {/* 🔧 强度 */}
+                      <div>
+                        <Label className="text-base font-semibold mb-2 block text-yellow-400">
+                          Strength: {guidanceScale}
+                        </Label>
+                        <div className="space-y-2">
+                          <input
+                            type="range"
+                            min="1"
+                            max="10"
+                            step="0.5"
+                            value={guidanceScale}
+                            onChange={(e) => setGuidanceScale(parseFloat(e.target.value))}
+                            className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer slider"
+                          />
+                          <div className="flex justify-between text-sm text-yellow-300/60">
+                            <span>Creative</span>
+                            <span>Strict</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 🔧 安全设置 */}
+                      <div>
+                        <Label className="text-base font-semibold mb-2 block text-yellow-400">
+                          Safety: {safetyTolerance}
+                        </Label>
+                        <div className="space-y-2">
+                          <input
+                            type="range"
+                            min="1"
+                            max="5"
+                            step="1"
+                            value={parseInt(safetyTolerance)}
+                            onChange={(e) => setSafetyTolerance(e.target.value)}
+                            className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer"
+                          />
+                          <div className="flex justify-between text-sm text-yellow-300/60">
+                            <span>Strict</span>
+                            <span>Permissive</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 🔧 随机种子 */}
+                      <div>
+                        <Label className="text-base font-semibold mb-2 block text-yellow-400">Seed</Label>
+                        <div className="flex gap-2">
+                          <Input
+                            type="number"
+                            placeholder="Random"
+                            value={seed || ""}
+                            onChange={(e) => setSeed(e.target.value ? parseInt(e.target.value) : undefined)}
+                            className="flex-1 h-12 text-base text-white bg-gray-900 border-gray-600"
+                            style={{ fontSize: '16px' }}
+                          />
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => setSeed(Math.floor(Math.random() * 1000000))}
+                            title="Generate random seed"
+                            className="h-12 w-12 p-0 text-lg"
+                          >
+                            🎲
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* 🔧 输出格式 */}
+                      <div>
+                        <Label className="text-base font-semibold mb-2 block text-yellow-400">Format</Label>
+                        <select
+                          value={outputFormat}
+                          onChange={(e) => setOutputFormat(e.target.value)}
+                          className="w-full p-3 border border-border rounded-lg text-base bg-background text-white h-12"
+                          style={{ fontSize: '16px' }}
+                        >
+                          <option value="jpeg">JPEG</option>
+                          <option value="png">PNG</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Card>
 
             {/* 🔧 编辑图像卡片 */}
-            <Card className="p-4">
-              <div className="space-y-4">
-                <div className="text-center">
-                  <Label className="text-lg font-semibold text-yellow-400">
-                    Image Editor
-                  </Label>
+            <Card className="p-6">
+              <div className="space-y-6">
+                {/* 🔧 编辑图像描述 */}
+                <div className="grid grid-cols-2 gap-6 mb-8">
+                  {/* 🔧 文本输入区域 */}
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <Label className="text-xl font-bold text-yellow-400">
+                        Image Description
+                      </Label>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={() => {
+                          const currentPrompt = uploadedImages.length > 0 ? editPrompt : textPrompt
+                          
+                          if (!currentPrompt.trim()) {
+                            const aiOptimizedPrompts = [
+                              "A photorealistic portrait of a wise elderly wizard with flowing silver beard, intricate robes, magical aura, studio lighting, highly detailed",
+                              "Modern minimalist architecture, clean lines, glass and steel, natural lighting, professional photography, architectural digest style",
+                              "Vibrant street art mural, urban setting, colorful graffiti, dynamic composition, street photography, high contrast",
+                              "Serene Japanese garden, cherry blossoms, koi pond, traditional architecture, soft morning light, zen atmosphere",
+                              "Futuristic cyberpunk cityscape, neon lights, rain-soaked streets, flying vehicles, blade runner aesthetic, cinematic lighting"
+                            ]
+                            const optimizedPrompt = aiOptimizedPrompts[Math.floor(Math.random() * aiOptimizedPrompts.length)]
+                            
+                            if (uploadedImages.length > 0) {
+                              setEditPrompt(optimizedPrompt)
+                            } else {
+                              setTextPrompt(optimizedPrompt)
+                            }
+                          } else {
+                            const enhancedPrompt = `${currentPrompt}, photorealistic, highly detailed, professional quality, perfect lighting, sharp focus, 8k resolution`
+                            
+                            if (uploadedImages.length > 0) {
+                              setEditPrompt(enhancedPrompt)
+                            } else {
+                              setTextPrompt(enhancedPrompt)
+                            }
+                          }
+                        }}
+                        className="h-10 text-base bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
+                      >
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        AI Optimize
+                      </Button>
+                    </div>
+                    
+                    <Textarea
+                      placeholder={uploadedImages.length > 0 
+                        ? "Describe how to edit the image... (e.g., 'make it anime style', 'add sunglasses', 'change to winter scene')"
+                        : "Describe the image you want to create... (e.g., 'a majestic eagle soaring over mountains')"
+                      }
+                      value={uploadedImages.length > 0 ? editPrompt : textPrompt}
+                      onChange={(e) => {
+                        if (uploadedImages.length > 0) {
+                          setEditPrompt(e.target.value)
+                        } else {
+                          setTextPrompt(e.target.value)
+                        }
+                      }}
+                      className="min-h-[140px] text-lg bg-gray-900 text-white border-gray-600 focus:border-yellow-400 focus:ring-yellow-400/50"
+                      style={{ fontSize: '18px', lineHeight: '1.6' }}
+                    />
+                  </div>
+
+                  {/* 🔧 上传图像区域 */}
+                  <div>
+                    <Label className="text-xl font-bold mb-3 block text-yellow-400">
+                      Reference Images (Optional)
+                    </Label>
+                    <div 
+                      className="border-2 border-dashed border-gray-600 hover:border-yellow-400 rounded-lg p-8 text-center cursor-pointer transition-all duration-200 bg-gray-900/30 hover:bg-gray-800/50 min-h-[160px] flex flex-col justify-center"
+                      onClick={() => {
+                        if (multiFileInputRef.current) {
+                          multiFileInputRef.current.value = ''
+                        }
+                        multiFileInputRef.current?.click()
+                      }}
+                      onDragOver={handleDragOver}
+                      onDragEnter={handleDragEnter}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
+                    >
+                      <input
+                        ref={multiFileInputRef}
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={handleMultiImageUpload}
+                        className="hidden"
+                      />
+                      {uploadedImages.length > 0 ? (
+                        <div className="space-y-4">
+                          <div className="grid grid-cols-2 gap-3">
+                            {uploadedImages.slice(0, 4).map((url, index) => (
+                              <SmartImagePreview
+                                key={index}
+                                url={url}
+                                alt={`Reference ${index + 1}`}
+                                index={index}
+                                onRemove={() => removeUploadedImage(index)}
+                              />
+                            ))}
+                          </div>
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              if (multiFileInputRef.current) {
+                                multiFileInputRef.current.value = ''
+                              }
+                              multiFileInputRef.current?.click()
+                            }}
+                            className="h-12 text-base bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
+                          >
+                            Add More ({uploadedImages.length})
+                          </Button>
+                        </div>
+                      ) : (
+                        <div>
+                          <ImageIcon className="h-24 w-24 text-gray-400 mx-auto mb-4" />
+                          <p className="text-xl text-white mb-3 font-semibold">
+                            Click, drag & drop, or paste images
+                          </p>
+                          <p className="text-base text-gray-300">
+                            Supports JPG, PNG, WebP (optional)
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* 🔧 图像数量和比例 */}
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <Label className="text-xl font-bold mb-3 block text-yellow-400">Images Count</Label>
+                    <select
+                      value={numImages.toString()}
+                      onChange={(e) => {
+                        const selectedCount = parseInt(e.target.value)
+                        if (canUseImageCount(selectedCount)) {
+                          setNumImages(selectedCount)
+                        }
+                      }}
+                      className="w-full p-4 border border-gray-600 rounded-lg text-lg bg-gray-900 text-white h-14 focus:border-yellow-400 focus:ring-yellow-400/50"
+                      style={{ fontSize: '18px' }}
+                    >
+                      {imageCountOptions.map((option) => (
+                        <option 
+                          key={option.value} 
+                          value={option.value}
+                          disabled={!canUseImageCount(option.value)}
+                        >
+                          {option.label}
+                          {!canUseImageCount(option.value) ? " (Upgrade required)" : ""}
+                        </option>
+                      ))}
+                    </select>
+                    {!canUseImageCount(numImages) && (
+                      <div className="mt-3 text-base text-yellow-300 bg-orange-900/20 border border-orange-600/30 rounded-lg p-4">
+                        <div className="flex items-center gap-3">
+                          <Lock className="h-5 w-5 text-orange-400" />
+                          <span className="text-orange-300 font-semibold">
+                            {getUpgradeMessage(numImages)}
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <Label className="text-xl font-bold mb-3 block text-yellow-400">
+                      {uploadedImages.length > 0 ? "Output Ratio" : "Aspect Ratio"}
+                    </Label>
+                    <select
+                      value={aspectRatio}
+                      onChange={(e) => setAspectRatio(e.target.value)}
+                      className="w-full p-4 border border-gray-600 rounded-lg text-lg bg-gray-900 text-white h-14 focus:border-yellow-400 focus:ring-yellow-400/50"
+                      style={{ fontSize: '18px' }}
+                    >
+                      {aspectRatioOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.icon} {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* 🔧 安全验证和生成按钮 */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+                  {/* 🔧 安全验证区域 */}
+                  <div className="flex flex-col justify-center">
+                    <div className="space-y-6">
+                      {/* 🔧 安全验证组件 */}
+                      <div className="bg-gray-900/50 border border-gray-600 rounded-lg p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                          <Shield className="h-6 w-6 text-green-400" />
+                          <Label className="text-lg font-bold text-green-400">Security Verification</Label>
+                        </div>
+                        <StandardTurnstile 
+                          onVerify={setTurnstileToken}
+                          onError={() => setError("Verification failed. Please try again.")}
+                          theme="dark"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 🔧 生成按钮区域 */}
+                  <div className="flex flex-col justify-center">
+                    <div className="text-center">
+                      <Label className="text-2xl font-bold flex items-center justify-center gap-3 text-yellow-400 mb-6">
+                        <Zap className="h-8 w-8" />
+                        Generate Images
+                      </Label>
+                      <Button 
+                        onClick={
+                          uploadedImages.length > 0 ? handleImageEdit : handleTextToImage
+                        }
+                        disabled={
+                          isGenerating || 
+                          (uploadedImages.length === 0 && !textPrompt.trim())
+                        }
+                        className="w-full h-24 text-2xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black border-0 shadow-2xl hover:shadow-3xl transition-all duration-300"
+                        size="lg"
+                      >
+                        {isGenerating ? (
+                          <div className="flex items-center justify-center gap-4">
+                            <Loader2 className="h-8 w-8 animate-spin" />
+                            <span className="text-xl">Generating...</span>
+                            {countdown > 0 && (
+                              <span className="text-lg opacity-80">
+                                ~{countdown}s
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          <>
+                            <Zap className="mr-4 h-8 w-8" />
+                            <span className="text-2xl">Generate</span>
+                          </>
+                        )}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -1935,37 +2311,41 @@ export function FluxKontextGenerator() {
       </section>
 
       {/* 🔧 图片展示区域 */}
-      <section className="py-4 pb-8">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
-          <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
-            <ImageIcon className="h-6 w-6" />
+      <section className="py-6 pb-10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-bold flex items-center gap-3 text-white">
+            <ImageIcon className="h-8 w-8" />
             Generated Images
           </h2>
+          <CreditDisplay 
+            showBuyButton={true}
+            className="flex-shrink-0"
+          />
         </div>
 
         {generatedImages.length === 0 ? (
-          <Card className="h-96">
+          <Card className="h-[500px]">
             <CardContent className="h-full flex items-center justify-center">
               <div className="text-center">
                 {isGenerating ? (
                   <>
-                    <Loader2 className="h-20 w-20 text-primary/50 mx-auto mb-6 animate-spin" />
-                    <h3 className="text-2xl font-semibold text-white mb-3">
+                    <Loader2 className="h-32 w-32 text-primary/50 mx-auto mb-8 animate-spin" />
+                    <h3 className="text-4xl font-bold text-white mb-4">
                       Creating your image...
                     </h3>
                     {countdown > 0 && (
-                      <p className="text-lg text-gray-300">
+                      <p className="text-2xl text-gray-300 font-semibold">
                         Estimated time remaining: ~{countdown} seconds
                       </p>
                     )}
                   </>
                 ) : (
                   <>
-                    <ImageIcon className="h-32 w-32 text-gray-400 mx-auto mb-8" />
-                    <h3 className="text-2xl font-semibold text-white mb-4">
+                    <ImageIcon className="h-40 w-40 text-gray-400 mx-auto mb-10" />
+                    <h3 className="text-4xl font-bold text-white mb-6">
                       Generated images will appear here
                     </h3>
-                    <p className="text-lg text-gray-300 max-w-md mx-auto leading-relaxed">
+                    <p className="text-xl text-gray-300 max-w-lg mx-auto leading-relaxed">
                       {uploadedImages.length > 0 
                         ? `Ready to edit ${uploadedImages.length} image${uploadedImages.length > 1 ? 's' : ''}. Add your editing instructions and click the generate button.`
                         : "Enter a description and click generate to create new images."
@@ -1977,21 +2357,134 @@ export function FluxKontextGenerator() {
             </CardContent>
           </Card>
         ) : (
-          <div className="space-y-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {generatedImages.map((image, index) => (
-                <Card key={index} className="group overflow-hidden border-2 hover:border-yellow-400 transition-all duration-300">
+                <Card key={index} className="group overflow-hidden border-2 hover:border-yellow-400 transition-all duration-300 shadow-lg hover:shadow-2xl">
                   <div className="relative">
                     <img 
                       src={image.url} 
                       alt={`Generated ${index + 1}`}
                       className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        onClick={() => handleDownloadImage(image)}
+                        title="Download image"
+                        className="h-12 w-12 p-0 bg-purple-600 hover:bg-purple-700 text-white border-purple-600 shadow-lg text-lg"
+                      >
+                        <Download className="h-6 w-6" />
+                      </Button>
+                    </div>
                   </div>
-                  <CardContent className="p-4">
-                    <p className="text-base text-white mb-3 line-clamp-2 leading-relaxed">
+                  <CardContent className="p-6">
+                    <p className="text-lg text-white mb-4 line-clamp-2 leading-relaxed font-medium">
                       "{image.prompt}"
                     </p>
+                    <div className="flex items-center justify-between text-base mb-6">
+                      <Badge variant="outline" className="text-base px-4 py-2 bg-blue-600/20 text-blue-300 border-blue-500">
+                        {image.action.replace('-', ' ')}
+                      </Badge>
+                      <span className="text-gray-300 font-semibold text-base">
+                        {image.width && image.height 
+                          ? `${image.width}×${image.height}`
+                          : aspectRatio
+                        }
+                      </span>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-3 mb-6">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        className="h-12 text-base bg-blue-600 hover:bg-blue-700 text-white border-blue-600 font-semibold"
+                        onClick={async () => {
+                          const linkToCopy = (image as any).fal_url || image.url
+                          await handleCopyLink(linkToCopy)
+                        }}
+                        title="Copy image URL"
+                      >
+                        <Copy className="w-5 h-5 mr-2" />
+                        COPY
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => {
+                          const openUrl = (image as any).fal_url || image.url
+                          window.open(openUrl, '_blank', 'noopener,noreferrer')
+                        }}
+                        title="Open in new page"
+                        className="h-12 text-base bg-green-600 hover:bg-green-700 text-white border-green-600 font-semibold"
+                      >
+                        <Eye className="w-5 h-5 mr-2" />
+                        VIEW
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => handleDownloadImage(image)}
+                        title="Download image"
+                        className="h-12 text-base bg-purple-600 hover:bg-purple-700 text-white border-purple-600 font-semibold"
+                      >
+                        <Download className="w-5 h-5 mr-2" />
+                        SAVE
+                      </Button>
+                    </div>
+
+                    {/* 🔧 快速编辑区域 */}
+                    <div className="space-y-4 pt-4 border-t border-gray-600">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Edit className="h-5 w-5 text-yellow-400" />
+                        <span className="text-lg font-bold text-yellow-400">Quick Edit</span>
+                      </div>
+                      <div className="flex gap-2">
+                        {["Add sunglasses", "Make anime style", "Winter scene"].map((suggestion, i) => (
+                          <Button
+                            key={i}
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handleQuickEdit(image, suggestion)}
+                            className="text-sm h-10 bg-gray-800 hover:bg-gray-700 text-gray-200 border-gray-600 flex-1 font-medium"
+                          >
+                            {suggestion}
+                          </Button>
+                        ))}
+                      </div>
+                      <div className="flex gap-2">
+                        <Input
+                          placeholder="Custom edit instruction..."
+                          className="flex-1 h-12 text-base bg-gray-900 border-gray-600 text-white focus:border-yellow-400"
+                          onKeyPress={(e) => {
+                            if (e.key === 'Enter') {
+                              const input = e.target as HTMLInputElement
+                              if (input.value.trim()) {
+                                handleQuickEdit(image, input.value.trim())
+                                input.value = ''
+                              }
+                            }
+                          }}
+                          style={{ fontSize: '16px' }}
+                        />
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={(e) => {
+                            const input = (e.target as HTMLElement).previousElementSibling as HTMLInputElement
+                            if (input?.value.trim()) {
+                              handleQuickEdit(image, input.value.trim())
+                              input.value = ''
+                            }
+                          }}
+                          className="h-12 px-4 text-base bg-yellow-600 hover:bg-yellow-700 text-black border-yellow-600 font-bold"
+                        >
+                          <Edit className="w-5 h-5" />
+                        </Button>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
