@@ -193,10 +193,10 @@
   }
 
   @keyframes pulse-glow {
-    0%, 100% { 
+    0%, 100% {
       box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
     }
-    50% { 
+    50% {
       box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
     }
   }
@@ -263,8 +263,8 @@
     .hero-gradient {
       background: 
         radial-gradient(ellipse 400px 300px at center, rgba(59, 130, 246, 0.04) 0%, transparent 40%);
-    }
-    
+  }
+
     .modern-card:hover {
       transform: none;
     }

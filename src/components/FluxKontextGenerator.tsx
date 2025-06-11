@@ -1867,17 +1867,17 @@ export function FluxKontextGenerator() {
             <Card className="p-3">
               <div className="space-y-3">
                 {/* 🔧 生成图像标题 */}
-                <div className="text-center mb-4">
-                  <h1 className="text-2xl sm:text-3xl font-bold text-yellow-400 mb-1">
+                <div className="text-center mb-6">
+                  <h1 className="text-3xl sm:text-4xl font-bold text-yellow-400 mb-2">
                     Flux Kontext AI Generator
                   </h1>
-                  <p className="text-base text-yellow-300/80 mb-2">
+                  <p className="text-lg text-yellow-300/90 mb-4 leading-relaxed">
                     Create and edit professional images with advanced AI technology
                   </p>
-                  <div className="flex flex-wrap justify-center gap-1">
-                    <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-xs">Character Consistency</Badge>
-                    <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-xs">Style Transfer</Badge>
-                    <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20 text-xs">Multi-Image Support</Badge>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-sm px-3 py-1">Character Consistency</Badge>
+                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-sm px-3 py-1">Style Transfer</Badge>
+                    <Badge variant="outline" className="bg-primary/20 text-primary border-primary/30 text-sm px-3 py-1">Multi-Image Support</Badge>
                   </div>
                 </div>
 
@@ -2081,14 +2081,14 @@ export function FluxKontextGenerator() {
             </Card>
 
             {/* 🔧 编辑图像 */}
-            <Card className="p-3">
-              <div className="space-y-3">
+            <Card className="p-4">
+              <div className="space-y-4">
                 {/* 🔧 编辑图像描述 */}
-                <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="grid grid-cols-2 gap-4 mb-6">
                   {/* 🔧 编辑图像描述 */}
                   <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <Label className="text-sm font-medium text-yellow-400">
+                    <div className="flex items-center justify-between mb-2">
+                      <Label className="text-base font-semibold text-yellow-400">
                         Image Description
                       </Label>
                       <Button 
@@ -2106,71 +2106,55 @@ export function FluxKontextGenerator() {
                               "Futuristic cyberpunk cityscape, neon lights, rain-soaked streets, flying vehicles, blade runner aesthetic, cinematic lighting"
                             ]
                             const optimizedPrompt = aiOptimizedPrompts[Math.floor(Math.random() * aiOptimizedPrompts.length)]
+                            
                             if (uploadedImages.length > 0) {
                               setEditPrompt(optimizedPrompt)
                             } else {
                               setTextPrompt(optimizedPrompt)
                             }
                           } else {
-                            const enhancementSuffixes = [
-                              ", professional photography, highly detailed, 8K resolution, award-winning composition",
-                              ", cinematic lighting, photorealistic, ultra-detailed, masterpiece quality",
-                              ", studio lighting, sharp focus, vibrant colors, professional grade",
-                              ", dramatic lighting, high contrast, artistic composition, gallery quality",
-                              ", natural lighting, crisp details, professional photography, magazine quality",
-                              ", soft lighting, elegant composition, fine art photography, museum quality"
-                            ]
-                            
-                            const enhancementPrefix = [
-                              "Professional photo of ",
-                              "High-quality image of ",
-                              "Artistic rendering of ",
-                              "Detailed photograph of ",
-                              "Masterpiece depicting ",
-                              "Premium quality "
-                            ]
-                            
-                            const usePrefix = Math.random() > 0.5
-                            const enhancement = usePrefix 
-                              ? enhancementPrefix[Math.floor(Math.random() * enhancementPrefix.length)] + currentPrompt + enhancementSuffixes[Math.floor(Math.random() * enhancementSuffixes.length)]
-                              : currentPrompt + enhancementSuffixes[Math.floor(Math.random() * enhancementSuffixes.length)]
+                            // 🔧 提示词增强功能
+                            const enhancedPrompt = `${currentPrompt}, photorealistic, highly detailed, professional quality, perfect lighting, sharp focus, 8k resolution`
                             
                             if (uploadedImages.length > 0) {
-                              setEditPrompt(enhancement)
+                              setEditPrompt(enhancedPrompt)
                             } else {
-                              setTextPrompt(enhancement)
+                              setTextPrompt(enhancedPrompt)
                             }
                           }
                         }}
-                        className="h-6 text-xs px-2"
+                        className="h-8 text-sm bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
                       >
-                        ✨ AI Enhance
+                        <Sparkles className="w-4 h-4 mr-1" />
+                        AI Optimize
                       </Button>
                     </div>
+                    
                     <Textarea
-                      placeholder={
-                        uploadedImages.length > 0 
-                          ? "Describe what you want to change in the images..."
-                          : "Describe the image you want to create..."
+                      placeholder={uploadedImages.length > 0 
+                        ? "Describe how to edit the image... (e.g., 'make it anime style', 'add sunglasses', 'change to winter scene')"
+                        : "Describe the image you want to create... (e.g., 'a majestic eagle soaring over mountains')"
                       }
                       value={uploadedImages.length > 0 ? editPrompt : textPrompt}
-                      onChange={(e) => uploadedImages.length > 0 ? setEditPrompt(e.target.value) : setTextPrompt(e.target.value)}
-                      onPaste={handlePaste}
-                      className="resize-none text-sm text-purple-300 h-72"
+                      onChange={(e) => {
+                        if (uploadedImages.length > 0) {
+                          setEditPrompt(e.target.value)
+                        } else {
+                          setTextPrompt(e.target.value)
+                        }
+                      }}
+                      className="min-h-[100px] text-base bg-background text-white border-gray-600 focus:border-yellow-400 focus:ring-yellow-400/50"
+                      style={{ fontSize: '16px', lineHeight: '1.5' }}
                     />
                   </div>
 
-                  {/* 🔧 参考图像 */}
+                  {/* 🔧 上传图像区域 - 增大尺寸和改进视觉效果 */}
                   <div>
-                    <Label className="text-sm font-medium mb-1 block text-yellow-400">
+                    <Label className="text-base font-semibold mb-2 block text-yellow-400">
                       Reference Images (Optional)
                     </Label>
                     <div 
-                      className="border-2 border-dashed border-border rounded p-2 text-center bg-muted/20 h-72 flex flex-col justify-center cursor-pointer hover:border-primary/50 transition-colors"
-                      onDragOver={handleDragOver}
-                      onDragEnter={handleDragEnter}
-                      onDragLeave={handleDragLeave}
-                      onDrop={handleDrop}
+                      className="border-2 border-dashed border-gray-600 hover:border-yellow-400 rounded-lg p-6 text-center cursor-pointer transition-all duration-200 bg-gray-900/30 hover:bg-gray-800/50 min-h-[120px] flex flex-col justify-center"
                       onClick={() => {
                         // 🔧 移除input的value，确保选择的是相同的文件
                         if (multiFileInputRef.current) {
@@ -2178,20 +2162,22 @@ export function FluxKontextGenerator() {
                         }
                         multiFileInputRef.current?.click()
                       }}
-                      onPaste={handlePaste}
-                      tabIndex={0}
+                      onDragOver={handleDragOver}
+                      onDragEnter={handleDragEnter}
+                      onDragLeave={handleDragLeave}
+                      onDrop={handleDrop}
                     >
                       <input
                         ref={multiFileInputRef}
                         type="file"
-                        accept="image/*"
                         multiple
+                        accept="image/*"
                         onChange={handleMultiImageUpload}
                         className="hidden"
                       />
                       {uploadedImages.length > 0 ? (
-                        <div className="space-y-2">
-                          <div className="grid grid-cols-2 gap-1">
+                        <div className="space-y-3">
+                          <div className="grid grid-cols-2 gap-2">
                             {uploadedImages.slice(0, 4).map((url, index) => (
                               <SmartImagePreview
                                 key={index}
@@ -2213,18 +2199,18 @@ export function FluxKontextGenerator() {
                               }
                               multiFileInputRef.current?.click()
                             }}
-                            className="h-6 text-xs"
+                            className="h-8 text-sm bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
                           >
                             Add More ({uploadedImages.length})
                           </Button>
                         </div>
                       ) : (
                         <div>
-                          <ImageIcon className="h-16 w-16 text-muted-foreground mx-auto mb-3" />
-                          <p className="text-sm text-purple-300 mb-1">
+                          <ImageIcon className="h-20 w-20 text-gray-400 mx-auto mb-4" />
+                          <p className="text-base text-white mb-2 font-medium">
                             Click, drag & drop, or paste images
                           </p>
-                          <p className="text-xs text-purple-300/60">
+                          <p className="text-sm text-gray-300">
                             Supports JPG, PNG, WebP (optional)
                           </p>
                         </div>
@@ -2234,12 +2220,12 @@ export function FluxKontextGenerator() {
                 </div>
 
                 {/* 🔧 间隔 */}
-                <div className="h-2"></div>
+                <div className="h-4"></div>
 
-                {/* 🔧 图像数量和比例 */}
-                <div className="grid grid-cols-2 gap-3">
+                {/* 🔧 图像数量和比例 - 改进字体和布局 */}
+                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <Label className="text-sm font-medium mb-1 block text-yellow-400">Images Count</Label>
+                    <Label className="text-base font-semibold mb-2 block text-yellow-400">Images Count</Label>
                     <select
                       value={numImages.toString()}
                       onChange={(e) => {
@@ -2248,7 +2234,8 @@ export function FluxKontextGenerator() {
                           setNumImages(selectedCount)
                         }
                       }}
-                      className="w-full p-2 border border-border rounded text-sm bg-background text-purple-300 h-8"
+                      className="w-full p-3 border border-gray-600 rounded-lg text-base bg-gray-900 text-white h-12 focus:border-yellow-400 focus:ring-yellow-400/50"
+                      style={{ fontSize: '16px' }}
                     >
                       {imageCountOptions.map((option) => (
                         <option 
@@ -2262,33 +2249,26 @@ export function FluxKontextGenerator() {
                       ))}
                     </select>
                     {!canUseImageCount(numImages) && (
-                      <div className="mt-1 p-2 bg-orange-50 border border-orange-200 rounded text-xs">
-                        <div className="flex items-center justify-between">
-                          <span className="text-orange-700">
+                      <div className="mt-2 text-sm text-yellow-300 bg-orange-900/20 border border-orange-600/30 rounded-lg p-3">
+                        <div className="flex items-center gap-2">
+                          <Lock className="h-4 w-4 text-orange-400" />
+                          <span className="text-orange-300 font-medium">
                             {getUpgradeMessage(numImages)}
                           </span>
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={() => router.push('/pricing')}
-                            className="h-5 text-xs px-2"
-                          >
-                            <Crown className="h-2 w-2 mr-1" />
-                            Upgrade
-                          </Button>
                         </div>
                       </div>
                     )}
                   </div>
 
                   <div>
-                    <Label className="text-sm font-medium mb-1 block text-yellow-400">
+                    <Label className="text-base font-semibold mb-2 block text-yellow-400">
                       {uploadedImages.length > 0 ? "Output Ratio" : "Aspect Ratio"}
                     </Label>
                     <select
                       value={aspectRatio}
                       onChange={(e) => setAspectRatio(e.target.value)}
-                      className="w-full p-2 border border-border rounded text-sm bg-background text-purple-300 h-8"
+                      className="w-full p-3 border border-gray-600 rounded-lg text-base bg-gray-900 text-white h-12 focus:border-yellow-400 focus:ring-yellow-400/50"
+                      style={{ fontSize: '16px' }}
                     >
                       {aspectRatioOptions.map((option) => (
                         <option key={option.value} value={option.value}>
@@ -2296,11 +2276,11 @@ export function FluxKontextGenerator() {
                         </option>
                       ))}
                     </select>
-                    {/* 🔧 图像编辑模式下的提示 */}
+                    {/* 🔧 图像编辑模式下的提示 - 改进样式 */}
                     {uploadedImages.length > 0 && (
-                      <div className="mt-1 text-xs text-yellow-300/70 bg-blue-50/10 border border-blue-200/20 rounded p-2">
-                        <div className="flex items-center gap-1">
-                          <Info className="h-3 w-3 text-blue-400" />
+                      <div className="mt-2 text-sm text-blue-200 bg-blue-900/20 border border-blue-600/30 rounded-lg p-3">
+                        <div className="flex items-center gap-2">
+                          <Info className="h-4 w-4 text-blue-400" />
                           <span className="text-blue-300">
                             Image editing may preserve original proportions. Output ratio provides guidance but final size depends on input image.
                           </span>
@@ -2311,98 +2291,64 @@ export function FluxKontextGenerator() {
                 </div>
 
                 {/* 🔧 下半部分：安全验证和生成按钮 - 优化移动端布局 */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* 🔧 安全验证 - 往左移动 */}
-                  <div className="col-span-1 md:col-span-1">
-                    {isTurnstileEnabled && checkTurnstileRequired() ? (
-                      <div>
-                        <div className="flex items-center justify-center md:justify-start mb-2">
-                          <Label className="text-sm font-medium flex items-center gap-1 text-yellow-400">
-                            <Shield className="h-4 w-4" />
-                            Security
-                          </Label>
-                        </div>
-                        <div className="bg-muted/30 p-2 rounded h-16 flex items-center justify-center relative" ref={turnstileRef}>
-                          {isTurnstileVerified ? (
-                            // 🔧 验证成功状态
-                            <div className="text-sm text-green-600 text-center py-2 flex items-center gap-2">
-                              <Shield className="h-4 w-4" />
-                              ✅ Verified!
-                            </div>
-                          ) : (
-                            // 🔧 直接显示Turnstile组件，让StandardTurnstile组件自己处理脚本加载
-                            <div className="text-center">
-                              {(() => {
-                                // 🔧 检查Turnstile是否被启用 - 修复环境变量检查逻辑
-                                const turnstileEnabled = process.env.NEXT_PUBLIC_ENABLE_TURNSTILE
-                                const isTurnstileEnabled = turnstileEnabled === "true" || turnstileEnabled === "TRUE"
-                                const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY
-                                const hasSiteKey = !!siteKey && siteKey.trim() !== ""
-                                
-                                console.log("🔍 Turnstile环境变量检查:", {
-                                  turnstileEnabled,
-                                  isTurnstileEnabled,
-                                  siteKey: siteKey ? "已设置" : "未设置",
-                                  hasSiteKey,
-                                  windowTurnstile: typeof window !== 'undefined' ? !!window.turnstile : "服务器端"
-                                })
-                                
-                                // 🔧 如果Turnstile被禁用，显示禁用状态
-                                if (!isTurnstileEnabled || !hasSiteKey) {
-                                  return (
-                                    <div className="text-sm text-muted-foreground text-center py-2 flex items-center gap-2">
-                                      <Shield className="h-4 w-4" />
-                                      Verification Disabled
-                                    </div>
-                                  )
-                                }
-                                
-                                // 🔧 直接显示Turnstile组件，让它自己处理脚本加载
-                                return (
-                                  <>
-                                    <StandardTurnstile
-                                      onVerify={handleTurnstileVerify}
-                                      onError={handleTurnstileError}
-                                      onExpire={handleTurnstileExpire}
-                                      theme="auto"
-                                      size="flexible"
-                                    />
-                                    <div className="text-xs text-muted-foreground mt-1">
-                                      Human verification required
-                                    </div>
-                                  </>
-                                )
-                              })()}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ) : (
-                      <div>
-                        <Label className="text-sm font-medium flex items-center justify-center md:justify-start gap-1 text-yellow-400 mb-2">
-                          <Shield className="h-4 w-4" />
-                          Security
-                        </Label>
-                        <div className="bg-muted/30 p-2 rounded h-16 flex items-center justify-center">
-                          <div className="text-sm text-green-600 text-center py-2 flex items-center gap-2">
-                            <Shield className="h-4 w-4" />
-                            {userType === UserType.PREMIUM ? "Premium User" : 
-                             userType === UserType.REGISTERED ? "Registered User" :
-                             !isTurnstileEnabled ? "Disabled" : "No verification needed"}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                  {/* 🔧 安全验证区域 */}
+                  <div className="flex flex-col justify-center">
+                    <div className="space-y-4">
+                      {/* 🔧 显示错误信息 - 改进样式 */}
+                      {error && (
+                        <div className="p-4 bg-red-900/30 border border-red-600/50 rounded-lg">
+                          <div className="flex items-center gap-2">
+                            <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0" />
+                            <p className="text-base text-red-200 font-medium">{error}</p>
                           </div>
                         </div>
+                      )}
+
+                      {/* 🔧 重试按钮 */}
+                      {error && lastRequest && (
+                        <Button 
+                          onClick={handleRetry}
+                          variant="outline"
+                          size="lg"
+                          className="w-full h-12 text-base bg-orange-600 hover:bg-orange-700 text-white border-orange-600"
+                        >
+                          <RefreshCw className="mr-2 h-5 w-5" />
+                          Retry Generation
+                        </Button>
+                      )}
+
+                      {/* 🔧 安全验证组件 */}
+                      <div className="bg-gray-900/50 border border-gray-600 rounded-lg p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          <Shield className="h-5 w-5 text-green-400" />
+                          <Label className="text-base font-semibold text-green-400">Security Verification</Label>
+                        </div>
+                        <StandardTurnstile 
+                          onVerify={setTurnstileToken}
+                          onError={() => setError("Verification failed. Please try again.")}
+                          theme="dark"
+                        />
                       </div>
-                    )}
+
+                      {/* 🔧 需要升级的提示 - 改进样式 */}
+                      {needsUpgrade(userType, 'advanced_editing') && uploadedImages.length > 0 && (
+                        <FeatureLocked 
+                          userType={userType}
+                          feature="Advanced Image Editing"
+                          requiredTier={UserType.PREMIUM}
+                        />
+                      )}
+                    </div>
                   </div>
 
-                  {/* 🔧 右侧：Generate Images - 优化移动端布局 */}
                   <div className="col-span-1 md:col-span-2 flex flex-col justify-center">
                     <div className="flex justify-center md:justify-end md:pr-8">
                       <div className="text-center">
-                        <Label className="text-sm font-medium flex items-center justify-center gap-2 text-yellow-400 mb-3">
-                          <Zap className="h-5 w-5" />
-                        Generate Images
-                      </Label>
+                        <Label className="text-lg font-semibold flex items-center justify-center gap-2 text-yellow-400 mb-4">
+                          <Zap className="h-6 w-6" />
+                          Generate Images
+                        </Label>
                         <Button 
                           onClick={
                             uploadedImages.length > 0 ? handleImageEdit : handleTextToImage
@@ -2412,39 +2358,26 @@ export function FluxKontextGenerator() {
                             (uploadedImages.length === 0 && !textPrompt.trim())
                             // 🔧 修改：移除图像编辑模式下对editPrompt的强制要求，允许使用默认提示词进行图像编辑
                           }
-                          className="w-full md:w-56 h-16 text-base font-semibold"
+                          className="w-full md:w-64 h-20 text-lg font-bold bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black border-0 shadow-lg hover:shadow-xl transition-all duration-200"
                           size="lg"
                         >
                           {isGenerating ? (
-                            <div className="flex items-center justify-center gap-2">
-                              <Loader2 className="h-5 w-5 animate-spin" />
-                              <span>Generating...</span>
+                            <div className="flex items-center justify-center gap-3">
+                              <Loader2 className="h-6 w-6 animate-spin" />
+                              <span className="text-lg">Generating...</span>
                               {countdown > 0 && (
-                                <span className="text-sm opacity-70">
+                                <span className="text-base opacity-80">
                                   ~{countdown}s
                                 </span>
                               )}
                             </div>
                           ) : (
                             <>
-                              <Zap className="mr-2 h-5 w-5" />
-                              Generate
+                              <Zap className="mr-3 h-6 w-6" />
+                              <span className="text-lg">Generate</span>
                             </>
                           )}
                         </Button>
-                        {!canUseImageCount(numImages) && (
-                          <div className="mt-3">
-                            <Button 
-                              variant="outline" 
-                              size="sm"
-                              onClick={() => router.push('/pricing')}
-                              className="text-sm"
-                            >
-                              <Crown className="h-4 w-4 mr-2" />
-                              {getUpgradeMessage(numImages)}
-                            </Button>
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -2475,23 +2408,23 @@ export function FluxKontextGenerator() {
                   <div className="text-center">
                 {isGenerating ? (
                   <>
-                    <Loader2 className="h-16 w-16 text-primary/50 mx-auto mb-4 animate-spin" />
-                    <h3 className="text-xl font-medium text-muted-foreground mb-2">
+                    <Loader2 className="h-20 w-20 text-primary/50 mx-auto mb-6 animate-spin" />
+                    <h3 className="text-2xl font-semibold text-white mb-3">
                       Creating your image...
                     </h3>
                     {countdown > 0 && (
-                      <p className="text-sm text-muted-foreground/60">
+                      <p className="text-lg text-gray-300">
                         Estimated time remaining: ~{countdown} seconds
                       </p>
                     )}
                   </>
-                ) : (
+                ) :
                   <>
-                    <ImageIcon className="h-24 w-24 text-muted-foreground/30 mx-auto mb-6" />
-                    <h3 className="text-xl font-medium text-muted-foreground mb-3">
+                    <ImageIcon className="h-32 w-32 text-gray-400 mx-auto mb-8" />
+                    <h3 className="text-2xl font-semibold text-white mb-4">
                       Generated images will appear here
                     </h3>
-                    <p className="text-muted-foreground/60 max-w-md mx-auto">
+                    <p className="text-lg text-gray-300 max-w-md mx-auto leading-relaxed">
                       {uploadedImages.length > 0 
                         ? `Ready to edit ${uploadedImages.length} image${uploadedImages.length > 1 ? 's' : ''}. Add your editing instructions and click the generate button.`
                         : "Enter a description and click generate to create new images."
@@ -2502,11 +2435,11 @@ export function FluxKontextGenerator() {
                   </div>
                 </CardContent>
               </Card>
-            ) : (
-              <div className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            ) :
+              <div className="space-y-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {generatedImages.map((image, index) => (
-                    <Card key={index} className="group overflow-hidden">
+                    <Card key={index} className="group overflow-hidden border-2 hover:border-yellow-400 transition-all duration-300">
                       <div className="relative">
                         <img 
                           src={image.url} 
@@ -2514,53 +2447,27 @@ export function FluxKontextGenerator() {
                           className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={() => {
-                              // 🔧 快速编辑：获取对应输入框的文本并自动处理
-                              const cardElement = (document.activeElement?.closest('.group') || document.querySelector('.group:hover')) as HTMLElement
-                              const inputElement = cardElement?.querySelector('input[placeholder="Edit this image..."]') as HTMLInputElement
-                              const editText = inputElement?.value?.trim() || ""
-                              
-                              if (editText) {
-                                // 🔧 有文字就直接快速编辑
-                                handleQuickEdit(image, editText)
-                                // 🔧 清空输入框
-                                if (inputElement) inputElement.value = ''
-                              } else {
-                                // 🔧 修改：没有输入时只设置图片到编辑区，保留现有的编辑提示词不清空
-                                setUploadedImages([image.url])
-                                // 🔧 移除setEditPrompt("") - 保留用户输入
-                                window.scrollTo({ top: 0, behavior: 'smooth' })
-                              }
-                            }}
-                            title="Quick edit this image"
-                            className="h-8 w-8 p-0 bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
-                          >
-                            <Edit className="h-4 w-4" />
-                          </Button>
+                        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
                           <Button 
                             variant="outline" 
                             size="sm" 
                             onClick={() => handleDownloadImage(image)}
                             title="Download image"
-                            className="h-8 w-8 p-0 bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
+                            className="h-10 w-10 p-0 bg-purple-600 hover:bg-purple-700 text-white border-purple-600 shadow-lg"
                           >
-                            <Download className="h-4 w-4" />
+                            <Download className="h-5 w-5" />
                           </Button>
                         </div>
                       </div>
-                      <CardContent className="p-3">
-                        <p className="text-sm text-muted-foreground mb-2 line-clamp-2">
+                      <CardContent className="p-4">
+                        <p className="text-base text-white mb-3 line-clamp-2 leading-relaxed">
                           "{image.prompt}"
                         </p>
-                        <div className="flex items-center justify-between text-xs mb-3">
-                          <Badge variant="outline" className="text-xs">
+                        <div className="flex items-center justify-between text-sm mb-4">
+                          <Badge variant="outline" className="text-sm px-3 py-1 bg-blue-600/20 text-blue-300 border-blue-500">
                             {image.action.replace('-', ' ')}
                           </Badge>
-                          <span className="text-muted-foreground">
+                          <span className="text-gray-300 font-medium">
                             {image.width && image.height 
                               ? `${image.width}×${image.height}`
                               : aspectRatio
@@ -2568,11 +2475,11 @@ export function FluxKontextGenerator() {
                           </span>
                         </div>
                         
-                        <div className="grid grid-cols-3 gap-1 mb-2">
+                        <div className="grid grid-cols-3 gap-2 mb-3">
                           <Button 
                             variant="outline" 
                             size="sm"
-                            className="h-8 text-xs"
+                            className="h-10 text-sm bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
                             onClick={async () => {
                               // 🔧 优先使用FAL链接，如果没有就使用主链接
                               const linkToCopy = (image as any).fal_url || image.url
@@ -2580,7 +2487,7 @@ export function FluxKontextGenerator() {
                             }}
                             title="Copy image URL"
                           >
-                            <Copy className="w-3 h-3 mr-1" />
+                            <Copy className="w-4 h-4 mr-1" />
                             COPY
                           </Button>
                           <Button 
@@ -2592,9 +2499,9 @@ export function FluxKontextGenerator() {
                               window.open(openUrl, '_blank', 'noopener,noreferrer')
                             }}
                             title="Open in new page"
-                            className="h-8 text-xs"
+                            className="h-10 text-sm bg-green-600 hover:bg-green-700 text-white border-green-600"
                           >
-                            <Eye className="w-3 h-3 mr-1" />
+                            <Eye className="w-4 h-4 mr-1" />
                             OPEN
                           </Button>
                           <Button 
@@ -2602,50 +2509,60 @@ export function FluxKontextGenerator() {
                             size="sm"
                             onClick={() => handleDownloadImage(image)}
                             title="Download image"
-                            className="h-8 text-xs"
+                            className="h-10 text-sm bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
                           >
-                            <Download className="w-3 h-3 mr-1" />
+                            <Download className="w-4 h-4 mr-1" />
                             DOWN
                           </Button>
                         </div>
-                    
-                        {/* 🔧 复制成功提示 - 设为固定位置，不影响布局 */}
-                        {copySuccess && (
-                          <div className="text-xs text-green-600 text-center py-1 rounded bg-green-50 border border-green-200 mb-2">
-                            ✅ {copySuccess}
+
+                        {/* 🔧 快速编辑区域 - 改进设计 */}
+                        <div className="space-y-3 pt-3 border-t border-gray-600">
+                          <div className="flex items-center gap-2 mb-2">
+                            <Edit className="h-4 w-4 text-yellow-400" />
+                            <span className="text-sm font-semibold text-yellow-400">Quick Edit</span>
                           </div>
-                        )}
-                        
-                        <div className="border-t pt-3">
+                          <div className="flex gap-2">
+                            {["Add sunglasses", "Make anime style", "Winter scene"].map((suggestion, i) => (
+                              <Button
+                                key={i}
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleQuickEdit(image, suggestion)}
+                                className="text-xs h-8 bg-gray-800 hover:bg-gray-700 text-gray-200 border-gray-600 flex-1"
+                              >
+                                {suggestion}
+                              </Button>
+                            ))}
+                          </div>
                           <div className="flex gap-2">
                             <Input
-                              placeholder="Edit this image..."
-                              className="flex-1 h-8 text-xs"
-                              onKeyDown={(e) => {
-                                if (e.key === 'Enter' && (e.target as HTMLInputElement).value.trim()) {
-                                  const editText = (e.target as HTMLInputElement).value.trim()
-                                  handleQuickEdit(image, editText)
-                                  ;(e.target as HTMLInputElement).value = ''
+                              placeholder="Custom edit instruction..."
+                              className="flex-1 h-9 text-sm bg-gray-900 border-gray-600 text-white focus:border-yellow-400"
+                              onKeyPress={(e) => {
+                                if (e.key === 'Enter') {
+                                  const input = e.target as HTMLInputElement
+                                  if (input.value.trim()) {
+                                    handleQuickEdit(image, input.value.trim())
+                                    input.value = ''
+                                  }
                                 }
                               }}
+                              style={{ fontSize: '14px' }}
                             />
                             <Button
                               variant="outline"
                               size="sm"
                               onClick={(e) => {
-                                const inputElement = (e.target as HTMLElement).closest('.flex')?.querySelector('input') as HTMLInputElement
-                                const editText = inputElement?.value?.trim() || ""
-                                if (editText) {
-                                  handleQuickEdit(image, editText)
-                                  inputElement.value = ''
-                                } else {
-                                  setError("Please enter edit instructions")
+                                const input = (e.target as HTMLElement).previousElementSibling as HTMLInputElement
+                                if (input?.value.trim()) {
+                                  handleQuickEdit(image, input.value.trim())
+                                  input.value = ''
                                 }
                               }}
-                              className="h-8 w-8 p-0"
-                              title="Quick edit and generate"
+                              className="h-9 px-3 text-sm bg-yellow-600 hover:bg-yellow-700 text-black border-yellow-600"
                             >
-                              <Zap className="h-3 w-3" />
+                              <Edit className="w-4 h-4" />
                             </Button>
                           </div>
                         </div>

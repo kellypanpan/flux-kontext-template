@@ -52,7 +52,7 @@ export function HomeContent() {
 
       {/* Hero Section - 现代化设计 */}
       <section className="relative pt-32 pb-24 px-4 overflow-hidden">
-        <div className="hero-gradient absolute inset-0 pointer-events-none" />
+          <div className="hero-gradient absolute inset-0 pointer-events-none" />
         
         {/* 装饰性元素 */}
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-500/10 to-blue-600/8 rounded-full blur-3xl float-animation" />
@@ -126,17 +126,17 @@ export function HomeContent() {
 
       {/* Content Sections with modern styling */}
       <div className="space-y-24">
-        {/* Twitter展示区域 */}
-        <TwitterShowcase />
+      {/* Twitter展示区域 */}
+      <TwitterShowcase />
 
-        {/* Key Features Section */}
-        <KeyFeatures />
+      {/* Key Features Section */}
+      <KeyFeatures />
 
-        {/* How-to Steps Section */}
-        <HowToSteps />
+      {/* How-to Steps Section */}
+      <HowToSteps />
 
-        {/* FAQ Section */}
-        <FAQ />
+      {/* FAQ Section */}
+      <FAQ />
       </div>
 
       {/* Footer */}

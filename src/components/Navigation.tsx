@@ -223,9 +223,9 @@ export function Navigation() {
                   {link.label}
                 </Link>
                 {link.hasDropdown && link.subItems?.map((subItem) => (
-                  <Link
-                    key={subItem.href}
-                    href={subItem.href}
+                          <Link
+                            key={subItem.href}
+                            href={subItem.href}
                     className="block px-10 py-2 text-sm text-gray-400 hover:text-orange-400 hover:bg-orange-500/10 transition-all duration-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -240,16 +240,16 @@ export function Navigation() {
               <div className="pt-4 border-t border-gray-700/50 space-y-2 px-6">
                 <Link href="/auth/signin" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button variant="ghost" className="w-full justify-start text-gray-300 hover:text-orange-400 hover:bg-orange-500/10">
-                    {common.navigation.login}
-                  </Button>
-                </Link>
-                <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)}>
+                      {common.navigation.login}
+                    </Button>
+                  </Link>
+                  <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)}>
                   <Button className="w-full modern-button">
-                    {common.buttons.signUp}
-                  </Button>
-                </Link>
+                      {common.buttons.signUp}
+                    </Button>
+                  </Link>
               </div>
-            )}
+              )}
           </nav>
         </div>
       )}

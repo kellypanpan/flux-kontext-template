@@ -31,7 +31,7 @@ export function Footer() {
   return (
     <footer className="bg-card border-t border-border mt-16">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="text-2xl font-bold text-primary">
@@ -43,8 +43,18 @@ export function Footer() {
             <div className="text-sm text-muted-foreground">
               {footer.brand.copyright}
             </div>
-            
-            {/* Legal Links moved to Brand Section */}
+          </div>
+
+          {/* Contact & Legal - 中间栏目 */}
+          <div className="space-y-4">
+            <h3 className="font-semibold text-foreground">{footer.contact.title}</h3>
+            <a
+              href={`mailto:${footer.contact.email}`}
+              className="block text-muted-foreground hover:text-primary hover:font-semibold active:scale-95 transition-all duration-200 text-sm"
+            >
+              {footer.contact.email}
+            </a>
+
             <div className="pt-4">
               <h3 className="font-semibold text-foreground mb-3">{footer.legal.title}</h3>
               <div className="space-y-2">

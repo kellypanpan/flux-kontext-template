@@ -159,7 +159,7 @@ export function SmartImagePreview({ url, alt, index, onRemove }: SmartImagePrevi
 
   return (
     <div className="relative">
-      <div className="w-full h-20 rounded border overflow-hidden bg-muted/20">
+      <div className="w-full h-32 rounded-lg border-2 overflow-hidden bg-gray-900/50 hover:border-yellow-400 transition-colors">
         {!hasError ? (
           <>
             <img 
@@ -172,23 +172,23 @@ export function SmartImagePreview({ url, alt, index, onRemove }: SmartImagePrevi
               loading="lazy"
             />
             {isLoading && (
-              <div className="w-full h-full bg-muted/50 flex items-center justify-center">
-                <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
+              <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                <Loader2 className="h-6 w-6 animate-spin text-gray-400" />
               </div>
             )}
           </>
         ) : (
-          <div className="w-full h-full bg-red-50 border border-red-200 rounded flex flex-col items-center justify-center text-xs text-red-600 p-1">
+          <div className="w-full h-full bg-red-900/30 border-2 border-red-600/50 rounded-lg flex flex-col items-center justify-center text-sm text-red-300 p-2">
             <div className="text-center">
-              <div className="text-red-500 mb-1">⚠️</div>
-              <div>Load Error</div>
-              <div className="text-xs opacity-70">
+              <div className="text-red-400 mb-2 text-lg">⚠️</div>
+              <div className="font-medium">Load Error</div>
+              <div className="text-xs opacity-80 mt-1">
                 {getUrlType(url) === 'blob' ? 'Local file' : `Ref ${index + 1}`}
               </div>
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-4 text-xs mt-1 p-0"
+                className="h-6 text-xs mt-2 p-1 text-red-300 hover:text-red-200"
                 onClick={() => {
                   setRetryCount(0)
                   setCurrentUrl(url)
@@ -205,10 +205,10 @@ export function SmartImagePreview({ url, alt, index, onRemove }: SmartImagePrevi
       <Button
         variant="destructive"
         size="sm"
-        className="absolute -top-1 -right-1 h-4 w-4 p-0 text-xs"
+        className="absolute -top-2 -right-2 h-6 w-6 p-0 text-sm bg-red-600 hover:bg-red-700 text-white border-red-600 rounded-full shadow-lg"
         onClick={onRemove}
       >
-        <X className="h-2 w-2" />
+        <X className="h-3 w-3" />
       </Button>
     </div>
   )

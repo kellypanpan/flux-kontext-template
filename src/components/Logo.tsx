@@ -77,15 +77,15 @@ export function Logo({
           )}>
             Creative
           </span>
-          <span className={cn(
+        <span className={cn(
             "font-bold text-foreground",
-            size === "sm" && "text-lg md:text-xl",
-            size === "md" && "text-xl md:text-2xl",
-            size === "lg" && "text-2xl md:text-3xl",
-            size === "xl" && "text-3xl md:text-4xl"
-          )}>
+          size === "sm" && "text-lg md:text-xl",
+          size === "md" && "text-xl md:text-2xl",
+          size === "lg" && "text-2xl md:text-3xl",
+          size === "xl" && "text-3xl md:text-4xl"
+        )}>
             Forge
-          </span>
+        </span>
         </div>
       )}
     </div>
