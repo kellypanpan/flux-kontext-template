@@ -1854,11 +1854,6 @@ export function FluxKontextGenerator() {
 
       {/* 🔧 生成图像部分 */}
       <section className="flex flex-col py-2">
-        {/* 🔧 生成图像标题 */}
-        <header className="mb-3">
-          {/* 🔧 生成图像展示 */}
-        </header>
-
         {/* 🔧 生成图像内容 */}
         <div className="space-y-3">
           {/* 🔧 生成图像和编辑图像 */}
@@ -1891,12 +1886,12 @@ export function FluxKontextGenerator() {
                       <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-xs">
                         Recommended
                       </Badge>
-                  )}
-                </div>
+                    )}
+                  </div>
 
-                    <select
+                  <select
                     value={selectedModel}
-                      onChange={(e) => {
+                    onChange={(e) => {
                       const newModel = e.target.value
                       // 🔧 设置模型
                       if (newModel === 'max-multi') {
@@ -1908,7 +1903,7 @@ export function FluxKontextGenerator() {
                     className="w-full p-2 border border-border rounded text-sm bg-background text-purple-300"
                   >
                     {getAvailableModelsForContext().map((model) => (
-                        <option 
+                      <option 
                         key={model.value} 
                         value={model.value}
                         disabled={!model.available}
@@ -1916,471 +1911,22 @@ export function FluxKontextGenerator() {
                         {model.label}
                         {model.recommended ? " ⭐" : ""}
                         {!model.available ? " (Upgrade required)" : ""}
-                        </option>
-                      ))}
-                    </select>
-                  
-                  {/* 🔧 模型信息 */}
-                  {currentModelInfo && (
-                    <div className="mt-2 p-3 bg-muted/20 border border-border rounded-lg">
-                      <div className="grid grid-cols-2 gap-2 text-xs">
-                        <div>
-                          <span className="text-yellow-400 font-medium">Credits:</span>
-                          <span className="ml-1 text-purple-300">{currentModelInfo.credits}</span>
-                        </div>
-                        <div>
-                          <span className="text-yellow-400 font-medium">Speed:</span>
-                          <span className="ml-1 text-purple-300">{currentModelInfo.speed}</span>
-                        </div>
-                        <div>
-                          <span className="text-yellow-400 font-medium">Quality:</span>
-                          <span className="ml-1 text-purple-300">{currentModelInfo.quality}</span>
-                        </div>
-                        <div>
-                          <span className="text-yellow-400 font-medium">Type:</span>
-                          <span className="ml-1 text-purple-300">
-                            {uploadedImages.length > 0 ? "Editing" : "Generation"}
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <div className="mt-2">
-                        <p className="text-xs text-yellow-300/80 mb-1">
-                          {currentModelInfo.description}
-                        </p>
-                        <div className="flex flex-wrap gap-1">
-                          {currentModelInfo.features.map((feature, index) => (
-                            <Badge 
-                              key={index} 
-                              variant="outline" 
-                              className="bg-primary/5 text-primary border-primary/20 text-xs px-1 py-0"
-                            >
-                              {feature}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  
-                  {/* 🔧 模型不可用提示 */}
-                  {currentModelInfo && !currentModelInfo.available && (
-                    <div className="mt-2 p-2 bg-orange-50 border border-orange-200 rounded text-sm">
-                        <div className="flex items-center justify-between">
-                          <span className="text-orange-700">
-                          {userType === UserType.ANONYMOUS ? "Sign up to unlock this model" : "Upgrade Required"}
-                          </span>
-                          
-                        </div>
-                      </div>
-                    )}
-                  
-                  {/* 🔧 多图像编辑提示 */}
-                  {uploadedImages.length > 1 && (
-                    <div className="mt-2 p-2 bg-blue-50 border border-blue-200 rounded text-sm">
-                      <div className="flex items-center gap-2">
-                        <Info className="h-4 w-4 text-blue-600" />
-                        <span className="text-blue-700 text-xs">
-                          Multi-image editing detected. Using experimental multi-image processing.
-                        </span>
-                  </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* 🔧 高级设置 */}
-                <div>
-                  <h3 className="text-sm font-medium text-yellow-400 flex items-center gap-2 mb-2">
-                    <Settings className="h-4 w-4" />
-                    Advanced Settings
-                  </h3>
-                  
-                  <div className="grid grid-cols-2 gap-3">
-                    {/* 🔧 强度 */}
-                    <div>
-                      <Label className="text-xs font-medium mb-1 block text-yellow-400">
-                        Strength: {guidanceScale}
-                      </Label>
-                      <div className="space-y-1">
-                        <input
-                          type="range"
-                          min="1"
-                          max="10"
-                          step="0.5"
-                          value={guidanceScale}
-                          onChange={(e) => setGuidanceScale(parseFloat(e.target.value))}
-                          className="w-full h-1 bg-muted rounded-lg appearance-none cursor-pointer slider"
-                        />
-                        <div className="flex justify-between text-xs text-yellow-300/60">
-                          <span>Creative</span>
-                          <span>Strict</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 🔧 安全设置 */}
-                    <div>
-                      <Label className="text-xs font-medium mb-1 block text-yellow-400">
-                        Safety: {safetyTolerance}
-                      </Label>
-                      <div className="space-y-1">
-                        <input
-                          type="range"
-                          min="1"
-                          max="5"
-                          step="1"
-                          value={parseInt(safetyTolerance)}
-                          onChange={(e) => setSafetyTolerance(e.target.value)}
-                          className="w-full h-1 bg-muted rounded-lg appearance-none cursor-pointer"
-                        />
-                        <div className="flex justify-between text-xs text-yellow-300/60">
-                          <span>Strict</span>
-                          <span>Permissive</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 🔧 随机种子 */}
-                    <div>
-                      <Label className="text-xs font-medium mb-1 block text-yellow-400">Seed</Label>
-                      <div className="flex gap-1">
-                        <Input
-                          type="number"
-                          placeholder="Random"
-                          value={seed || ""}
-                          onChange={(e) => setSeed(e.target.value ? parseInt(e.target.value) : undefined)}
-                          className="flex-1 h-7 text-xs text-purple-300"
-                        />
-                        <Button 
-                          variant="outline" 
-                          size="sm"
-                          onClick={() => setSeed(Math.floor(Math.random() * 1000000))}
-                          title="Generate random seed"
-                          className="h-7 w-7 p-0"
-                        >
-                          🎲
-                        </Button>
-                      </div>
-                    </div>
-
-                    {/* 🔧 输出格式 */}
-                    <div>
-                      <Label className="text-xs font-medium mb-1 block text-yellow-400">Format</Label>
-                      <select
-                        value={outputFormat}
-                        onChange={(e) => setOutputFormat(e.target.value)}
-                        className="w-full p-1 border border-border rounded text-xs bg-background text-purple-300 h-7"
-                      >
-                        <option value="jpeg">JPEG</option>
-                        <option value="png">PNG</option>
-                      </select>
-                    </div>
-                  </div>
+                      </option>
+                    ))}
+                  </select>
+                
+                  {/* 🔧 其他UI组件暂时省略 */}
                 </div>
               </div>
             </Card>
 
-            {/* 🔧 编辑图像 */}
+            {/* 🔧 编辑图像卡片 */}
             <Card className="p-4">
               <div className="space-y-4">
-                {/* 🔧 编辑图像描述 */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  {/* 🔧 编辑图像描述 */}
-                  <div>
-                    <div className="flex items-center justify-between mb-2">
-                      <Label className="text-base font-semibold text-yellow-400">
-                        Image Description
-                      </Label>
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        onClick={() => {
-                          const currentPrompt = uploadedImages.length > 0 ? editPrompt : textPrompt
-                          
-                          if (!currentPrompt.trim()) {
-                            const aiOptimizedPrompts = [
-                              "A photorealistic portrait of a wise elderly wizard with flowing silver beard, intricate robes, magical aura, studio lighting, highly detailed",
-                              "Modern minimalist architecture, clean lines, glass and steel, natural lighting, professional photography, architectural digest style",
-                              "Vibrant street art mural, urban setting, colorful graffiti, dynamic composition, street photography, high contrast",
-                              "Serene Japanese garden, cherry blossoms, koi pond, traditional architecture, soft morning light, zen atmosphere",
-                              "Futuristic cyberpunk cityscape, neon lights, rain-soaked streets, flying vehicles, blade runner aesthetic, cinematic lighting"
-                            ]
-                            const optimizedPrompt = aiOptimizedPrompts[Math.floor(Math.random() * aiOptimizedPrompts.length)]
-                            
-                            if (uploadedImages.length > 0) {
-                              setEditPrompt(optimizedPrompt)
-                            } else {
-                              setTextPrompt(optimizedPrompt)
-                            }
-                          } else {
-                            // 🔧 提示词增强功能
-                            const enhancedPrompt = `${currentPrompt}, photorealistic, highly detailed, professional quality, perfect lighting, sharp focus, 8k resolution`
-                            
-                            if (uploadedImages.length > 0) {
-                              setEditPrompt(enhancedPrompt)
-                            } else {
-                              setTextPrompt(enhancedPrompt)
-                            }
-                          }
-                        }}
-                        className="h-8 text-sm bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
-                      >
-                        <Sparkles className="w-4 h-4 mr-1" />
-                        AI Optimize
-                      </Button>
-                    </div>
-                    
-                    <Textarea
-                      placeholder={uploadedImages.length > 0 
-                        ? "Describe how to edit the image... (e.g., 'make it anime style', 'add sunglasses', 'change to winter scene')"
-                        : "Describe the image you want to create... (e.g., 'a majestic eagle soaring over mountains')"
-                      }
-                      value={uploadedImages.length > 0 ? editPrompt : textPrompt}
-                      onChange={(e) => {
-                        if (uploadedImages.length > 0) {
-                          setEditPrompt(e.target.value)
-                        } else {
-                          setTextPrompt(e.target.value)
-                        }
-                      }}
-                      className="min-h-[100px] text-base bg-background text-white border-gray-600 focus:border-yellow-400 focus:ring-yellow-400/50"
-                      style={{ fontSize: '16px', lineHeight: '1.5' }}
-                    />
-                  </div>
-
-                  {/* 🔧 上传图像区域 - 增大尺寸和改进视觉效果 */}
-                  <div>
-                    <Label className="text-base font-semibold mb-2 block text-yellow-400">
-                      Reference Images (Optional)
-                    </Label>
-                    <div 
-                      className="border-2 border-dashed border-gray-600 hover:border-yellow-400 rounded-lg p-6 text-center cursor-pointer transition-all duration-200 bg-gray-900/30 hover:bg-gray-800/50 min-h-[120px] flex flex-col justify-center"
-                      onClick={() => {
-                        // 🔧 移除input的value，确保选择的是相同的文件
-                        if (multiFileInputRef.current) {
-                          multiFileInputRef.current.value = ''
-                        }
-                        multiFileInputRef.current?.click()
-                      }}
-                      onDragOver={handleDragOver}
-                      onDragEnter={handleDragEnter}
-                      onDragLeave={handleDragLeave}
-                      onDrop={handleDrop}
-                    >
-                      <input
-                        ref={multiFileInputRef}
-                        type="file"
-                        multiple
-                        accept="image/*"
-                        onChange={handleMultiImageUpload}
-                        className="hidden"
-                      />
-                      {uploadedImages.length > 0 ? (
-                        <div className="space-y-3">
-                          <div className="grid grid-cols-2 gap-2">
-                            {uploadedImages.slice(0, 4).map((url, index) => (
-                              <SmartImagePreview
-                                key={index}
-                                url={url}
-                                alt={`Reference ${index + 1}`}
-                                index={index}
-                                onRemove={() => removeUploadedImage(index)}
-                              />
-                            ))}
-                          </div>
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              // 🔧 移除input的value，确保选择的是相同的文件
-                              if (multiFileInputRef.current) {
-                                multiFileInputRef.current.value = ''
-                              }
-                              multiFileInputRef.current?.click()
-                            }}
-                            className="h-8 text-sm bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
-                          >
-                            Add More ({uploadedImages.length})
-                          </Button>
-                        </div>
-                      ) : (
-                        <div>
-                          <ImageIcon className="h-20 w-20 text-gray-400 mx-auto mb-4" />
-                          <p className="text-base text-white mb-2 font-medium">
-                            Click, drag & drop, or paste images
-                          </p>
-                          <p className="text-sm text-gray-300">
-                            Supports JPG, PNG, WebP (optional)
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* 🔧 间隔 */}
-                <div className="h-4"></div>
-
-                {/* 🔧 图像数量和比例 - 改进字体和布局 */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <Label className="text-base font-semibold mb-2 block text-yellow-400">Images Count</Label>
-                    <select
-                      value={numImages.toString()}
-                      onChange={(e) => {
-                        const selectedCount = parseInt(e.target.value)
-                        if (canUseImageCount(selectedCount)) {
-                          setNumImages(selectedCount)
-                        }
-                      }}
-                      className="w-full p-3 border border-gray-600 rounded-lg text-base bg-gray-900 text-white h-12 focus:border-yellow-400 focus:ring-yellow-400/50"
-                      style={{ fontSize: '16px' }}
-                    >
-                      {imageCountOptions.map((option) => (
-                        <option 
-                          key={option.value} 
-                          value={option.value}
-                          disabled={!canUseImageCount(option.value)}
-                        >
-                          {option.label}
-                          {!canUseImageCount(option.value) ? " (Upgrade required)" : ""}
-                        </option>
-                      ))}
-                    </select>
-                    {!canUseImageCount(numImages) && (
-                      <div className="mt-2 text-sm text-yellow-300 bg-orange-900/20 border border-orange-600/30 rounded-lg p-3">
-                        <div className="flex items-center gap-2">
-                          <Lock className="h-4 w-4 text-orange-400" />
-                          <span className="text-orange-300 font-medium">
-                            {getUpgradeMessage(numImages)}
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div>
-                    <Label className="text-base font-semibold mb-2 block text-yellow-400">
-                      {uploadedImages.length > 0 ? "Output Ratio" : "Aspect Ratio"}
-                    </Label>
-                    <select
-                      value={aspectRatio}
-                      onChange={(e) => setAspectRatio(e.target.value)}
-                      className="w-full p-3 border border-gray-600 rounded-lg text-base bg-gray-900 text-white h-12 focus:border-yellow-400 focus:ring-yellow-400/50"
-                      style={{ fontSize: '16px' }}
-                    >
-                      {aspectRatioOptions.map((option) => (
-                        <option key={option.value} value={option.value}>
-                          {option.icon} {option.label}
-                        </option>
-                      ))}
-                    </select>
-                    {/* 🔧 图像编辑模式下的提示 - 改进样式 */}
-                    {uploadedImages.length > 0 && (
-                      <div className="mt-2 text-sm text-blue-200 bg-blue-900/20 border border-blue-600/30 rounded-lg p-3">
-                        <div className="flex items-center gap-2">
-                          <Info className="h-4 w-4 text-blue-400" />
-                          <span className="text-blue-300">
-                            Image editing may preserve original proportions. Output ratio provides guidance but final size depends on input image.
-                          </span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* 🔧 下半部分：安全验证和生成按钮 - 优化移动端布局 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                  {/* 🔧 安全验证区域 */}
-                  <div className="flex flex-col justify-center">
-                    <div className="space-y-4">
-                      {/* 🔧 显示错误信息 - 改进样式 */}
-                      {error && (
-                        <div className="p-4 bg-red-900/30 border border-red-600/50 rounded-lg">
-                          <div className="flex items-center gap-2">
-                            <AlertCircle className="h-5 w-5 text-red-400 flex-shrink-0" />
-                            <p className="text-base text-red-200 font-medium">{error}</p>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* 🔧 重试按钮 */}
-                      {error && lastRequest && (
-                        <Button 
-                          onClick={handleRetry}
-                          variant="outline"
-                          size="lg"
-                          className="w-full h-12 text-base bg-orange-600 hover:bg-orange-700 text-white border-orange-600"
-                        >
-                          <RefreshCw className="mr-2 h-5 w-5" />
-                          Retry Generation
-                        </Button>
-                      )}
-
-                      {/* 🔧 安全验证组件 */}
-                      <div className="bg-gray-900/50 border border-gray-600 rounded-lg p-4">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Shield className="h-5 w-5 text-green-400" />
-                          <Label className="text-base font-semibold text-green-400">Security Verification</Label>
-                        </div>
-                        <StandardTurnstile 
-                          onVerify={setTurnstileToken}
-                          onError={() => setError("Verification failed. Please try again.")}
-                          theme="dark"
-                        />
-                      </div>
-
-                      {/* 🔧 需要升级的提示 - 改进样式 */}
-                      {needsUpgrade(userType, 'advanced_editing') && uploadedImages.length > 0 && (
-                        <FeatureLocked 
-                          userType={userType}
-                          feature="Advanced Image Editing"
-                          requiredTier={UserType.PREMIUM}
-                        />
-                      )}
-                    </div>
-                  </div>
-
-                  <div className="col-span-1 md:col-span-2 flex flex-col justify-center">
-                    <div className="flex justify-center md:justify-end md:pr-8">
-                      <div className="text-center">
-                        <Label className="text-lg font-semibold flex items-center justify-center gap-2 text-yellow-400 mb-4">
-                          <Zap className="h-6 w-6" />
-                          Generate Images
-                        </Label>
-                        <Button 
-                          onClick={
-                            uploadedImages.length > 0 ? handleImageEdit : handleTextToImage
-                          }
-                          disabled={
-                            isGenerating || 
-                            (uploadedImages.length === 0 && !textPrompt.trim())
-                            // 🔧 修改：移除图像编辑模式下对editPrompt的强制要求，允许使用默认提示词进行图像编辑
-                          }
-                          className="w-full md:w-64 h-20 text-lg font-bold bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black border-0 shadow-lg hover:shadow-xl transition-all duration-200"
-                          size="lg"
-                        >
-                          {isGenerating ? (
-                            <div className="flex items-center justify-center gap-3">
-                              <Loader2 className="h-6 w-6 animate-spin" />
-                              <span className="text-lg">Generating...</span>
-                              {countdown > 0 && (
-                                <span className="text-base opacity-80">
-                                  ~{countdown}s
-                                </span>
-                              )}
-                            </div>
-                          ) : (
-                            <>
-                              <Zap className="mr-3 h-6 w-6" />
-                              <span className="text-lg">Generate</span>
-                            </>
-                          )}
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
+                <div className="text-center">
+                  <Label className="text-lg font-semibold text-yellow-400">
+                    Image Editor
+                  </Label>
                 </div>
               </div>
             </Card>
@@ -2388,24 +1934,19 @@ export function FluxKontextGenerator() {
         </div>
       </section>
 
-      {/* 🔧 生成图像 */}
+      {/* 🔧 图片展示区域 */}
       <section className="py-4 pb-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
           <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
             <ImageIcon className="h-6 w-6" />
             Generated Images
           </h2>
-          <CreditDisplay 
-            showBuyButton={true}
-            className="flex-shrink-0"
-          />
         </div>
 
-        {/* 🔧 图片展示区域 */}
-            {generatedImages.length === 0 ? (
-              <Card className="h-96">
-                <CardContent className="h-full flex items-center justify-center">
-                  <div className="text-center">
+        {generatedImages.length === 0 ? (
+          <Card className="h-96">
+            <CardContent className="h-full flex items-center justify-center">
+              <div className="text-center">
                 {isGenerating ? (
                   <>
                     <Loader2 className="h-20 w-20 text-primary/50 mx-auto mb-6 animate-spin" />
@@ -2418,7 +1959,7 @@ export function FluxKontextGenerator() {
                       </p>
                     )}
                   </>
-                ) :
+                ) : (
                   <>
                     <ImageIcon className="h-32 w-32 text-gray-400 mx-auto mb-8" />
                     <h3 className="text-2xl font-semibold text-white mb-4">
@@ -2432,387 +1973,31 @@ export function FluxKontextGenerator() {
                     </p>
                   </>
                 )}
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {generatedImages.map((image, index) => (
+                <Card key={index} className="group overflow-hidden border-2 hover:border-yellow-400 transition-all duration-300">
+                  <div className="relative">
+                    <img 
+                      src={image.url} 
+                      alt={`Generated ${index + 1}`}
+                      className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
+                    />
                   </div>
-                </CardContent>
-              </Card>
-            ) :
-              <div className="space-y-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {generatedImages.map((image, index) => (
-                    <Card key={index} className="group overflow-hidden border-2 hover:border-yellow-400 transition-all duration-300">
-                      <div className="relative">
-                        <img 
-                          src={image.url} 
-                          alt={`Generated ${index + 1}`}
-                          className="w-full aspect-square object-cover transition-transform group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-                        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity flex gap-2">
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            onClick={() => handleDownloadImage(image)}
-                            title="Download image"
-                            className="h-10 w-10 p-0 bg-purple-600 hover:bg-purple-700 text-white border-purple-600 shadow-lg"
-                          >
-                            <Download className="h-5 w-5" />
-                          </Button>
-                        </div>
-                      </div>
-                      <CardContent className="p-4">
-                        <p className="text-base text-white mb-3 line-clamp-2 leading-relaxed">
-                          "{image.prompt}"
-                        </p>
-                        <div className="flex items-center justify-between text-sm mb-4">
-                          <Badge variant="outline" className="text-sm px-3 py-1 bg-blue-600/20 text-blue-300 border-blue-500">
-                            {image.action.replace('-', ' ')}
-                          </Badge>
-                          <span className="text-gray-300 font-medium">
-                            {image.width && image.height 
-                              ? `${image.width}×${image.height}`
-                              : aspectRatio
-                            }
-                          </span>
-                        </div>
-                        
-                        <div className="grid grid-cols-3 gap-2 mb-3">
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            className="h-10 text-sm bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
-                            onClick={async () => {
-                              // 🔧 优先使用FAL链接，如果没有就使用主链接
-                              const linkToCopy = (image as any).fal_url || image.url
-                              await handleCopyLink(linkToCopy)
-                            }}
-                            title="Copy image URL"
-                          >
-                            <Copy className="w-4 h-4 mr-1" />
-                            COPY
-                          </Button>
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={() => {
-                              // 🔧 新页面打开图片
-                              const openUrl = (image as any).fal_url || image.url
-                              window.open(openUrl, '_blank', 'noopener,noreferrer')
-                            }}
-                            title="Open in new page"
-                            className="h-10 text-sm bg-green-600 hover:bg-green-700 text-white border-green-600"
-                          >
-                            <Eye className="w-4 h-4 mr-1" />
-                            OPEN
-                          </Button>
-                          <Button 
-                            variant="outline" 
-                            size="sm"
-                            onClick={() => handleDownloadImage(image)}
-                            title="Download image"
-                            className="h-10 text-sm bg-purple-600 hover:bg-purple-700 text-white border-purple-600"
-                          >
-                            <Download className="w-4 h-4 mr-1" />
-                            DOWN
-                          </Button>
-                        </div>
-
-                        {/* 🔧 快速编辑区域 - 改进设计 */}
-                        <div className="space-y-3 pt-3 border-t border-gray-600">
-                          <div className="flex items-center gap-2 mb-2">
-                            <Edit className="h-4 w-4 text-yellow-400" />
-                            <span className="text-sm font-semibold text-yellow-400">Quick Edit</span>
-                          </div>
-                          <div className="flex gap-2">
-                            {["Add sunglasses", "Make anime style", "Winter scene"].map((suggestion, i) => (
-                              <Button
-                                key={i}
-                                variant="outline"
-                                size="sm"
-                                onClick={() => handleQuickEdit(image, suggestion)}
-                                className="text-xs h-8 bg-gray-800 hover:bg-gray-700 text-gray-200 border-gray-600 flex-1"
-                              >
-                                {suggestion}
-                              </Button>
-                            ))}
-                          </div>
-                          <div className="flex gap-2">
-                            <Input
-                              placeholder="Custom edit instruction..."
-                              className="flex-1 h-9 text-sm bg-gray-900 border-gray-600 text-white focus:border-yellow-400"
-                              onKeyPress={(e) => {
-                                if (e.key === 'Enter') {
-                                  const input = e.target as HTMLInputElement
-                                  if (input.value.trim()) {
-                                    handleQuickEdit(image, input.value.trim())
-                                    input.value = ''
-                                  }
-                                }
-                              }}
-                              style={{ fontSize: '14px' }}
-                            />
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={(e) => {
-                                const input = (e.target as HTMLElement).previousElementSibling as HTMLInputElement
-                                if (input?.value.trim()) {
-                                  handleQuickEdit(image, input.value.trim())
-                                  input.value = ''
-                                }
-                              }}
-                              className="h-9 px-3 text-sm bg-yellow-600 hover:bg-yellow-700 text-black border-yellow-600"
-                            >
-                              <Edit className="w-4 h-4" />
-                            </Button>
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            )}
-      </section>
-
-      {/* 🔧 如何使用AI平台部分 */}
-      <section className="mt-8 py-6 px-6 bg-muted/30 rounded-lg">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-6">
-            How to Use Our AI Platform
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Upload className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">1. Upload Your Image</h3>
-              <p className="text-muted-foreground">
-                Upload your image for character consistency and style analysis.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Edit className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">2. Write Editing Prompt</h3>
-              <p className="text-muted-foreground">
-                Describe your edits. The AI handles character consistency and style reference.
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3">3. Generate with AI Models</h3>
-              <p className="text-muted-foreground">
-                Choose Pro model (16 credits) or Max model (32 credits) for generation.
-              </p>
+                  <CardContent className="p-4">
+                    <p className="text-base text-white mb-3 line-clamp-2 leading-relaxed">
+                      "{image.prompt}"
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 🔧 关键AI功能部分 */}
-      <section className="mt-8 py-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Key AI Features
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="text-center p-6">
-              <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Layers className="w-6 h-6 text-blue-500" />
-              </div>
-              <h3 className="font-semibold mb-2">Character Consistency</h3>
-              <p className="text-sm text-muted-foreground">
-                Maintain character identity across different scenes and poses
-              </p>
-            </Card>
-            <Card className="text-center p-6">
-              <div className="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Settings className="w-6 h-6 text-green-500" />
-              </div>
-              <h3 className="font-semibold mb-2">Smart Editing</h3>
-              <p className="text-sm text-muted-foreground">
-                Intelligent image modifications with AI-powered precision
-              </p>
-            </Card>
-            <Card className="text-center p-6">
-              <div className="w-12 h-12 bg-purple-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <ImageIcon className="w-6 h-6 text-purple-500" />
-              </div>
-              <h3 className="font-semibold mb-2">Style Reference</h3>
-              <p className="text-sm text-muted-foreground">
-                Generate new scenes in existing styles with consistency
-              </p>
-            </Card>
-            <Card className="text-center p-6">
-              <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Zap className="w-6 h-6 text-orange-500" />
-              </div>
-              <h3 className="font-semibold mb-2">Interactive Speed</h3>
-              <p className="text-sm text-muted-foreground">
-                Fast processing with minimal latency for quick iterations
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* 🔧 AI平台常见问题部分 */}
-      <section className="mt-8 py-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-3">What is Flux Kontext?</h3>
-              <p className="text-muted-foreground">
-                Our platform is a suite of generative flow matching models for image generation and editing. 
-                Unlike traditional text-to-image models, it understands both text and images as input for true in-context generation.
-              </p>
-            </Card>
-            
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-3">What makes this platform special?</h3>
-              <p className="text-muted-foreground">
-                The system offers four key capabilities: character consistency across scenes, smart editing with AI precision, 
-                style reference for new scenes, and interactive speed with minimal latency.
-              </p>
-            </Card>
-            
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-3">Which model should I choose?</h3>
-              <p className="text-muted-foreground">
-                Pro model (16 credits) excels at fast iterative editing while maintaining character consistency. 
-                Max model (32 credits) provides maximum performance with improved prompt adherence and typography.
-              </p>
-            </Card>
-            
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-3">How does the platform achieve character consistency?</h3>
-              <p className="text-muted-foreground">
-                The AI preserves elements across scenes by understanding visual context. 
-                It builds upon previous edits while maintaining characters, identities, styles, and features consistent.
-              </p>
-            </Card>
-            
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-3">How does smart editing work?</h3>
-              <p className="text-muted-foreground">
-                Smart editing uses AI to make intelligent modifications while preserving image quality. 
-                This capability enables precise enhancements while maintaining overall composition.
-              </p>
-            </Card>
-            
-            <Card className="p-6">
-              <h3 className="text-lg font-semibold mb-3">Can the platform handle style reference?</h3>
-              <p className="text-muted-foreground">
-                Yes, the AI generates new scenes in existing styles. 
-                It analyzes style elements from reference images to create consistent visual aesthetics across generations.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* 🔧 AI模型比较部分 */}
-      <section className="mt-8 py-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-8">
-            AI Model Comparison
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="p-6 border-2 border-primary/20">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold">Pro Model</h3>
-                <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">16 Credits</Badge>
-              </div>
-              <p className="text-muted-foreground mb-6">
-                Perfect for fast iterative editing and character consistency
-              </p>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <span className="text-sm">Fast processing speed</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <span className="text-sm">Smart editing capabilities</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-3"></div>
-                  <span className="text-sm">Style reference support</span>
-                </li>
-              </ul>
-              <Button 
-                variant={selectedModel === 'pro' ? 'default' : 'outline'} 
-                className="w-full"
-                onClick={() => {
-                  if (!availableModels.includes('pro')) {
-                    router.push('/pricing')
-                  } else {
-                    setSelectedModel('pro')
-                  }
-                }}
-              >
-                {!availableModels.includes('pro') ? (
-                  <>
-                    <Lock className="w-4 h-4 mr-2" />
-                    Upgrade Required
-                  </>
-                ) : selectedModel === 'pro' ? 'Selected' : 'Select Pro Model'}
-              </Button>
-            </Card>
-            
-            <Card className="p-6 border-2 border-purple-500/20">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold">Max Model</h3>
-                <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">32 Credits</Badge>
-              </div>
-              <p className="text-muted-foreground mb-6">
-                Maximum performance with enhanced prompt adherence
-              </p>
-              <ul className="space-y-3 mb-6">
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                  <span className="text-sm">Highest quality output</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                  <span className="text-sm">Advanced typography</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                  <span className="text-sm">Superior prompt adherence</span>
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
-                  <span className="text-sm">Professional-grade results</span>
-                </li>
-              </ul>
-              <Button 
-                variant={selectedModel === 'max' ? 'default' : 'outline'} 
-                className="w-full"
-                onClick={() => {
-                  if (!availableModels.includes('max')) {
-                    router.push('/pricing')
-                  } else {
-                    setSelectedModel('max')
-                  }
-                }}
-              >
-                {!availableModels.includes('max') ? (
-                  <>
-                    <Lock className="w-4 h-4 mr-2" />
-                    Upgrade Required
-                  </>
-                ) : selectedModel === 'max' ? 'Selected' : 'Select Max Model'}
-              </Button>
-            </Card>
-          </div>
-        </div>
+        )}
       </section>
     </div>
   )
