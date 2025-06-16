@@ -1857,9 +1857,9 @@ export function FluxKontextGenerator() {
         {/* 🔧 生成图像内容 */}
         <div className="space-y-3">
           {/* 🔧 生成图像和编辑图像 */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-            {/* 🔧 生成图像 */}
-            <Card className="p-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* 🔧 AI图像生成模块 - 左侧独立模块 */}
+            <Card className="p-8 bg-gradient-to-br from-slate-900 via-purple-900/50 to-slate-900 border-2 border-purple-500/30 shadow-2xl backdrop-blur-sm">
               <div className="space-y-6">
                 {/* 🔧 生成图像标题 */}
                 <div className="text-center mb-8">
@@ -1883,7 +1883,7 @@ export function FluxKontextGenerator() {
                       {uploadedImages.length > 0 ? "Image Editing Model" : "Text to Image Model"}
                     </Label>
                     {currentModelInfo?.recommended && (
-                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 text-sm">
+                      <Badge variant="outline" className="bg-green-500/20 text-green-300 border-green-400/40 text-sm">
                         Recommended
                       </Badge>
                     )}
@@ -1899,7 +1899,7 @@ export function FluxKontextGenerator() {
                         setSelectedModel(newModel as any)
                       }
                     }}
-                    className="w-full p-4 border border-border rounded-lg text-lg bg-background text-white h-14"
+                    className="w-full p-4 border border-purple-400/50 rounded-lg text-lg bg-slate-800/80 text-white h-14 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-400/30 backdrop-blur-sm"
                     style={{ fontSize: '18px' }}
                   >
                     {getAvailableModelsForContext().map((model) => (
@@ -1917,7 +1917,7 @@ export function FluxKontextGenerator() {
                 
                   {/* 🔧 模型信息 */}
                   {currentModelInfo && (
-                    <div className="mt-4 p-4 bg-muted/20 border border-border rounded-lg">
+                    <div className="mt-4 p-4 bg-slate-800/60 border border-purple-400/30 rounded-lg backdrop-blur-sm">
                       <div className="grid grid-cols-2 gap-3 text-base">
                         <div>
                           <span className="text-yellow-400 font-semibold">Credits:</span>
@@ -1948,7 +1948,7 @@ export function FluxKontextGenerator() {
                             <Badge 
                               key={index} 
                               variant="outline" 
-                              className="bg-primary/5 text-primary border-primary/20 text-sm px-2 py-1"
+                              className="bg-purple-500/10 text-purple-300 border-purple-400/30 text-sm px-2 py-1"
                             >
                               {feature}
                             </Badge>
@@ -1979,7 +1979,7 @@ export function FluxKontextGenerator() {
                             step="0.5"
                             value={guidanceScale}
                             onChange={(e) => setGuidanceScale(parseFloat(e.target.value))}
-                            className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer slider"
+                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer slider"
                           />
                           <div className="flex justify-between text-sm text-yellow-300/60">
                             <span>Creative</span>
@@ -2001,7 +2001,7 @@ export function FluxKontextGenerator() {
                             step="1"
                             value={parseInt(safetyTolerance)}
                             onChange={(e) => setSafetyTolerance(e.target.value)}
-                            className="w-full h-2 bg-muted rounded-lg appearance-none cursor-pointer"
+                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer"
                           />
                           <div className="flex justify-between text-sm text-yellow-300/60">
                             <span>Strict</span>
@@ -2019,7 +2019,7 @@ export function FluxKontextGenerator() {
                             placeholder="Random"
                             value={seed || ""}
                             onChange={(e) => setSeed(e.target.value ? parseInt(e.target.value) : undefined)}
-                            className="flex-1 h-12 text-base text-white bg-gray-900 border-gray-600"
+                            className="flex-1 h-12 text-base text-white bg-slate-800/80 border-purple-400/50 focus:border-yellow-400"
                             style={{ fontSize: '16px' }}
                           />
                           <Button 
@@ -2027,7 +2027,7 @@ export function FluxKontextGenerator() {
                             size="sm"
                             onClick={() => setSeed(Math.floor(Math.random() * 1000000))}
                             title="Generate random seed"
-                            className="h-12 w-12 p-0 text-lg"
+                            className="h-12 w-12 p-0 text-lg bg-purple-600/20 border-purple-400/50 hover:bg-purple-600/40"
                           >
                             🎲
                           </Button>
@@ -2040,7 +2040,7 @@ export function FluxKontextGenerator() {
                         <select
                           value={outputFormat}
                           onChange={(e) => setOutputFormat(e.target.value)}
-                          className="w-full p-3 border border-border rounded-lg text-base bg-background text-white h-12"
+                          className="w-full p-3 border border-purple-400/50 rounded-lg text-base bg-slate-800/80 text-white h-12 focus:border-yellow-400"
                           style={{ fontSize: '16px' }}
                         >
                           <option value="jpeg">JPEG</option>
@@ -2053,8 +2053,8 @@ export function FluxKontextGenerator() {
               </div>
             </Card>
 
-            {/* 🔧 编辑图像卡片 */}
-            <Card className="p-6">
+            {/* 🔧 内容创作控制模块 - 右侧独立模块 */}
+            <Card className="p-8 bg-gradient-to-br from-slate-900 via-blue-900/50 to-slate-900 border-2 border-blue-500/30 shadow-2xl backdrop-blur-sm">
               <div className="space-y-6">
                 {/* 🔧 编辑图像描述 */}
                 <div className="grid grid-cols-2 gap-6 mb-8">
